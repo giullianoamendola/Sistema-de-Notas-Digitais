@@ -1,0 +1,84 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="vendor/bootstrap/dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="vendor/toastr/toastr.min.css" />
+		<link rel="stylesheet" type="text/css" href="vendor/datatables/media/css/jquery.dataTables.min.css" />
+		<link rel="stylesheet" type="text/css" href="vendor/datatables/media/css/dataTables.bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="vendor/datatables.net-select-bs/css/select.bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="vendor/bootstrap3-dialog/dist/css/bootstrap-dialog.min.css" />
+		<link rel="stylesheet" type="text/css" href="estilo.css" />
+	</head>
+	<body>
+		<!--Barra do Topo -->
+		<nav class = "navbar navbar-inverse navbar-fixed-top" >
+			<div class="container-fluid">
+				<a class="navbar-brand" href="index.html">Distribuidora de Jornal</a>
+			</div>
+		</nav>
+		<!-- Barra Lateral -->
+		<div class= "container-fluid "	>
+			<div class="col-md-2 sidebar">
+				<ul class ="nav nav-sidebar">
+					<li> <a href="criarNotaVenda.html">Criar Nota de Venda </a></li>
+					<li> <a href="emitirNotaVenda.html">Emitir Nota de Venda</a></li>
+					<li> <a href="#/lugarNenhum">Lancar Preco de Capa</a></li>
+					<li> <a href="#/lugarNenhum">Cadastrar...</a></li>
+				</ul>
+			</div>
+		</div>
+		<!-- Conteudo -->
+		<div class="col-md-10 col-md-offset-2 main ">
+			<h1 class='page-header' > Criar Nota Venda</h1>
+			<form class='form-horizontal' id = 'formCriarNotaVenda' name = 'formCriarNotaVenda' method = 'post'  >
+				<input type = 'hidden' id = 'id' name = 'id'/>	
+				<br/>
+				<div class = 'form-group'>
+					<label for='dataNota' class = 'control-label col-md-2' >Data</label>
+					<div class = 'col-md-3 ' >	
+						<input type='text' id = 'dataNota' name = 'dataNota' />
+					</div>
+				</div>
+				<br/>
+
+				<div class = 'form-group'>
+					<label for='pontosVenda' class = 'control-label col-md-2 '>Ponto de Venda</label>
+					<div id = 'pontosVenda' >
+					</div>
+				</div>
+				<br/>
+
+				<div class='form-group'>
+					<label class =' col-md-2 control-label'>Data Pagamento</label>
+					<div class = 'col-md-3' >	
+						<input type='text' id = 'dataPagamento' name = 'dataPagamento' />
+					</div>
+				</div>
+				<br/>
+
+				<div class='form-group'>
+					<div id = 'itensNota' class = 'col-md-offset-2 col-md-5' >
+					</div>
+				</div>
+				<div class="form-group col-md-offset-5 ">
+					<div class="col-md-offset-5 col-md-3">					
+						<button class ="btn btn-primary " id="criar">Criar</button>
+						<button class ="btn btn-default " id="cancelar">Cancelar</button>
+					</div>
+
+				</div>
+			</form>
+		</div>
+		<script src="vendor/jquery/dist/jquery.min.js" ></script>
+		<script src="vendor/bootstrap/dist/js/bootstrap.min.js" ></script>
+		<script src="vendor/js-signals/dist/signals.min.js" ></script>
+		<script src="vendor/crossroads/dist/crossroads.min.js" ></script>
+		<script src="vendor/jquery-validation/dist/jquery.validate.min.js" ></script>
+		<script src="vendor/toastr/toastr.min.js" ></script>
+		<script src="vendor/datatables/media/js/jquery.dataTables.min.js" ></script>
+		<script src="vendor/datatables/media/js/dataTables.bootstrap.min.js" ></script>
+		<script src="vendor/datatables.net-select/js/dataTables.select.min.js" ></script>
+		<script src="vendor/bootstrap3-dialog/dist/js/bootstrap-dialog.min.js" ></script>	
+		<script type="PontoVendaVM.js"></script>
+		<script type="PrecoCapaVM.js"></script>
+		<script src="criarNotaVenda.js"></script>
+</html>

@@ -1,0 +1,183 @@
+
+<html>
+		<head>
+			<link rel="stylesheet" type="text/css" href="vendor/bootstrap/dist/css/bootstrap.min.css" />
+			<link rel="stylesheet" type="text/css" href="vendor/toastr/toastr.min.css" />
+			<link rel="stylesheet" type="text/css" href="vendor/datatables/media/css/jquery.dataTables.min.css" />
+			<link rel="stylesheet" type="text/css" href="vendor/datatables/media/css/dataTables.bootstrap.min.css" />
+			<link rel="stylesheet" type="text/css" href="vendor/datatables.net-select-bs/css/select.bootstrap.min.css" />
+			<link rel="stylesheet" type="text/css" href="vendor/bootstrap3-dialog/dist/css/bootstrap-dialog.min.css" />		
+			<link rel="stylesheet" type="text/css" href="estilo.css" />	
+
+		</head>
+
+
+		<body>
+			<!--Barra do Topo -->
+			<nav class = "navbar navbar-inverse navbar-fixed-top" >
+				<div class="container-fluid">
+					<a class="navbar-brand" href="#">Distribuidora de Jornal</a>
+				</div>
+			</nav>
+			
+			<!-- Barra Lateral -->
+			<div class= "container-fluid "	>
+
+					<div class="col-sm-3 col-md-2 sidebar">
+						<ul class ="nav nav-sidebar">
+							<li> <a href="criarNota.js">Criar Nota de Venda </a></li>
+							<li> <a href="#/lugarNenhum">Alterar Nota de Venda</a></li>
+							<li> <a href="#/lugarNenhum">Lancar Preco de Capa</a></li>
+							<li> <a href="#/lugarNenhum">Cadastrar...</a></li>
+						</ul>
+					</div>
+
+			</div>
+			<!-- Conteudo -->
+			
+			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main ">
+				<div id ="conteudo"> 
+					<span id = 'criarNotaVenda '>
+
+			<h1 class='page-header' > Criar Nota Venda</h1>
+			
+				<form class='form-horizontal' id = 'formCriarNotaVenda' name = 'formCriarNotaVenda' method = 'post'  >
+
+					<input type = 'hidden' id = 'id' name = 'id'/>	
+
+					<label class ='col-md 2 col-xs 2 control-label'>Data:</label>
+					
+
+					<div class = 'col-md 3 col-xs 3' >	
+						<input type='text' id = 'dataNota' name = 'dataNota' />
+					</div>
+					
+					<!--
+					<div id = 'pontosVenda' class = 'col-md 2 col-xs 2' >
+
+					</div>
+
+					<input type = 'hidden' id = 'pontoVenda' name = 'pontoVenda'/>	
+					
+					<label class ='col-md 2 control-label'>Data Pagamento:</label>
+					
+					<div class = 'col-md 3 ' >	
+						<input type='text' id = 'dataPagamento' name = 'dataPagamento' />
+					</div>
+					
+					<div id = 'precosCapa' class = 'col-md 2 ' >
+
+					</div>
+				
+					<div id = 'itensNota' class = 'col-md 3 col-md-offset-2  '>
+						
+					</div>
+					-->
+					<form class= "form-group">
+						<div class="col-md-offset-2 col-md-3">
+							<button class ="btn btn-primary" id="criar">Criar</button>
+							<button class ="btn btn-default" id="cancelar">Cancelar</button>
+						</div>
+					
+					</form>	
+				</form>
+
+
+
+
+
+				</span>
+			</div>
+
+		</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="vendor/jquery/dist/jquery.min.js" ></script>
+<script src="vendor/bootstrap/dist/js/bootstrap.min.js" ></script>
+<script src="vendor/js-signals/dist/signals.min.js" ></script>
+<script src="vendor/crossroads/dist/crossroads.min.js" ></script>
+<script src="vendor/jquery-validation/dist/jquery.validate.min.js" ></script>
+<script src="vendor/toastr/toastr.min.js" ></script>
+<script src="vendor/datatables/media/js/jquery.dataTables.min.js" ></script>
+<script src="vendor/datatables/media/js/dataTables.bootstrap.min.js" ></script>
+<script src="vendor/datatables.net-select/js/dataTables.select.min.js" ></script>
+<script src="vendor/bootstrap3-dialog/dist/js/bootstrap-dialog.min.js" ></script>	
+<!--
+
+<script>
+	alert( $("#dataNota").val() );
+
+		$(document).ready(function () {
+			
+			$('#criar').on('click', function () {
+				$.ajax({
+					url: "ControladoraNotaVenda.php",
+					type: "post",
+					data: {
+						rota: 'nota',
+						dataNota:"data"
+					},
+					success: function (resposta) {
+						alert(resposta);
+					},
+					error: function () {
+						alert("Erro!");
+					}
+					/*dataType: "html"*/
+				});
+			});
+		});
+	</script>
+
+
+-->
+
+	
+
+	<script>
+		$(document).ready(function () {
+			
+			$('#criar').on('click', function () {
+				$.ajax({
+					url: "ControladoraNotaVenda.php",
+					type: "post",
+					data: {
+						rota: 'nota',
+						obj: {
+							nome: "nome",
+							idade: 31
+						}
+					},
+					success: function (resposta) {
+						alert(resposta);
+					},
+					error: function () {
+						alert("Erro!");
+					}
+					/*dataType: "html"*/
+				});
+			});
+		});
+	</script>
+
+	
+
+
+</html>
