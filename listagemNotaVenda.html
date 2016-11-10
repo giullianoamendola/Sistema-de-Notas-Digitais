@@ -1,0 +1,123 @@
+<html>
+		<head>
+			<meta charset="UTF8">
+			<meta name="fragment" content="!">
+			<meta name="viewport" content="width=device-width initial-scale=1">
+			<link rel="stylesheet" type="text/css" href="vendor/bootstrap/dist/css/bootstrap.min.css" />
+			<link rel="stylesheet" type="text/css" href="vendor/toastr/toastr.min.css" />
+			<link rel="stylesheet" type="text/css" href="vendor/datatables/media/css/jquery.dataTables.min.css" />
+			<link rel="stylesheet" type="text/css" href="vendor/datatables/media/css/dataTables.bootstrap.min.css" />
+			<link rel="stylesheet" type="text/css" href="vendor/datatables.net-select-bs/css/select.bootstrap.min.css" />
+			<link rel="stylesheet" type="text/css" href="vendor/bootstrap3-dialog/dist/css/bootstrap-dialog.min.css" />		
+			<link rel="stylesheet" type="text/css" href="estilo.css" />	
+
+		</head>
+
+
+		<body>
+			<!--Barra do Topo -->
+			<nav class = "navbar navbar-inverse navbar-fixed-top" >
+				<div class="container-fluid">
+					<a class="navbar-brand" href="index.html">Distribuidora de Jornal</a>
+				</div>
+			</nav>
+			
+			<!-- Barra Lateral -->
+			<div class= "container-fluid "	>
+
+					<div class="col-md-2 sidebar">
+						<ul class ="nav nav-sidebar">
+							<li> <a href="criarNotaVenda.html">Criar Nota de Venda </a></li>
+							<li> <a href="emitirNotaVenda.html">Emitir Nota de Venda</a></li>
+							<li> <a href="lancarPrecoCapa.html">Lancar Preco de Capa</a></li>
+							<li> <a href="registrarPagamento.html">Registrar Pagamento</a></li>
+							<li> <a href="listagemNotaVenda.html">Listagem Notas de Venda</a></li>
+							<li> <a href="alterarNotaVenda.html">Alterar Nota de Venda</a></li>
+						</ul>
+					</div>
+
+			</div>
+			<!-- Conteudo -->
+			
+			<div class="col-md-10 col-md-offset-2 main ">
+
+
+			<h1 class='page-header' >Listagem Nota de Venda</h1>
+			
+			<span id='conteudo'>
+				<form class='form-horizontal' id = 'formListagemNotaVenda' name = 'formListagemNotaVenda' method = 'post'  >
+				<br/>
+
+			
+					<div class="form-group">
+					
+						<label for='dataNota' class = 'col-md-2 control-label' >Data</label>
+
+
+						<div class = 'col-md-2 ' >	
+								<input type='text' id = 'dataNota' name = 'dataNota' />
+						</div>
+
+					</div>	
+
+					<br/>
+					<br/>
+
+						<form class= "form-group">
+							<div class="col-md-offset-5 col-md-8" id = "botaoListar">
+								<button class ="btn btn-primary" id="listar">Listar</button>
+							</div>
+						</form>	
+
+					<br/>
+					<br/>
+		
+					<div id='notasVenda' class="col-md-10">
+
+					</div>
+					<div class="container" id ="janelaModal">
+					  <div class="modal fade" id="modalNotaVenda" role="dialog">
+					    <div class="modal-dialog modal-sm">
+					      <div class="modal-content">
+					        <div class="modal-header">
+					          <button type="button" class="close" data-dismiss="modal">&times;</button>
+					          <h4 class="modal-title">Nota de Venda</h4>
+					        </div>
+					        <div class="modal-body" id = "notaVenda" >
+
+					        </div>
+					        <div class="modal-footer">
+					          <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+					        </div>
+					      </div>
+					    </div>
+					  </div>
+					</div>
+
+					<form class= "form-group">
+						<div class="col-md-offset-8 col-md-6" id ="botoesListagem">
+							<button type='button' class='btn btn-info' id = "visualizar"data-toggle="modal" data-target="#modalNotaVenda">Visualizar</button>
+							<button type='button' class='btn btn-warning' id = "alterar">Alterar</button>
+							<button type='button' class='btn btn-danger' id ="excluir">Excluir</button>
+						</div>
+					</form>
+					<br/>
+					<br/>
+
+
+			</span>		
+
+		</div>
+
+
+
+
+
+
+	<script src="vendor/jquery/dist/jquery.min.js" ></script>
+	<script src="vendor/bootstrap/dist/js/bootstrap.min.js" ></script>
+	<script src="vendor/jquery-validation/dist/jquery.validate.min.js" ></script>
+	<script src="vendor/toastr/toastr.min.js" ></script>
+	<script src="vendor/jquery.maskedinput/src/jquery.maskedinput.js" ></script>
+
+	<script src="listagemNotaVenda.js"></script>

@@ -1,0 +1,76 @@
+<script>
+		$('#conteudo').val( $('#criarNotaVenda').val());
+
+	$('#pontosVenda').val( PontoVendaVM.listar() );
+	
+	$('#precosCapa').val( PrecoCapaVM.listar() );
+
+
+</script>
+
+<span id = 'CriarNotaVenda '>
+	<h1 class='page-header' > Criar Nota Venda</h1>
+	
+		<form class='form-horizontal' id = 'formCriarNotaVenda' name = 'formCriarNotaVenda' method = 'post' action = 'CriarNotaVenda.php' >
+
+			<input type = 'hidden' id = 'id' name = 'id'/>	
+
+			<label class ='col-md 2 col-xs 2 control-label'>Data:</label>
+			
+
+			<div class = 'col-md 3 col-xs 3' >	
+				<input type='text' id = 'dataNota' name = 'dataNota' />
+			</div>
+			
+			<div id = 'pontosVenda' class = 'col-md 2 col-xs 2' >
+
+			</div>
+
+			<input type = 'hidden' id = 'pontoVenda' name = 'pontoVenda'/>	
+			
+			<label class ='col-md 2 control-label'>Data Pagamento:</label>
+			
+			<div class = 'col-md 3 ' >	
+				<input type='text' id = 'dataPagamento' name = 'dataPagamento' />
+			</div>
+			
+			<div id = 'precosCapa' class = 'col-md 2 ' >
+
+			</div>
+		
+			<div id = 'itensNota' class = 'col-md 3 '>
+				
+			</div>
+			<form class= "form-group">
+				<div class="col-md-offset-2 col-md-3">
+					<button class ="btn btn-primary" id="criar">Criar</button>
+					<button class ="btn btn-default" id="cancelar">Cancelar</button>
+				</div>
+			</form>	
+		</form>
+
+
+
+</span>
+
+
+<script src="ItemNotaVM.js"></script>
+<script src="PrecoCapaVM.js"></script>
+<script src="NotaVendaVM.js"></script>
+<!--
+<script type="text/javascript">
+	$(document).ready({
+
+
+
+	$('#criar').onclick({
+
+		NotaVendaVM.criarNotaVenda();
+		ItemNotaVM.criarItemNota();
+	});
+
+	});
+
+
+</script>
+-->
