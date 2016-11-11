@@ -74,7 +74,9 @@ body {
 	
 	background-color: #E7E7E7;
 }
-
+.cor-linha {
+  background-color: lightblue;
+}
 
 /*
  * Main content

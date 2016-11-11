@@ -97,12 +97,26 @@
 		function comId( $id ){
 			$this->sql = "SELECT * FROM notaVenda WHERE id = :id ";
 			$notaVenda = null ;
+
 			try{
 				$ps = $this->pdo->prepare($this->sql);
 				$ps->execute( array( "id"=> $id));
 				$resultado = $ps->fetchObject();
 				$pontoVenda = $this->pontoVendaDAO->comId( $resultado->id_pontoVenda);
 				$notaVenda = new NotaVenda( $resultado->dataNota, $resultado->dataPgmt, $resultado->comissao, $pontoVenda, $resultado->id);
+				$this->sql = "SELECT * FROM itemNota WHERE id_notaVenda = :id_notaVenda";
+				$ps = $this->pdo->prepare($this->sql);
+				$ps->execute( array( "id_notaVenda"=> $notaVenda->getId()));
+				$resultado = $ps->fetchAll();
+				$itensNota = [] ;
+				foreach ($resultado as $row ) {
+
+					$precoCapa = $this->precoCapaDAO->comId( $row['id_precoCapa'] );
+					$itemNota = new ItemNota( $row['qtdEntregue'], 0 ,$precoCapa , null , $row['id']);
+
+					$itensNota[] = $itemNota ; 
+				}
+				$notaVenda->setItensNota( $itensNota );
 			}catch( Exception $e ){
 				throw new DAOException( $e );
 			}

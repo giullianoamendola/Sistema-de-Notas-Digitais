@@ -69,7 +69,7 @@ $(document).ready( function(){
 	_this.desenharNotaVenda = function desenharNotaVenda( notaVenda ){
 		var HTML =  notaVenda.pontoVenda.nome;
 		HTML += "<br/>";
-		HTML += "Data: "+notaVenda.dataNota;;
+		HTML += "Data: "+notaVenda.dataNota;
 		HTML += "<br/>";
 		
 

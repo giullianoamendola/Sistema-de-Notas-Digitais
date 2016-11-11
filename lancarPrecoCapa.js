@@ -26,9 +26,10 @@ $(document).ready( function (){
 			type:"get",
 			dataType:"json",
 			success: function( resposta ){
+				$("#data").html( "<h3>Data:"+resposta[0].data+"</h3>");
 				$.each( resposta, function( indice, precoCapa ){
 
-					//$("#precoCapa_"+indice).mask("99.99");
+					$("#precoCapa_"+indice).mask("?99.9?9");
 					$("#precoCapa_"+indice).val( precoCapa.preco);
 					$("#precoCapaId_"+indice).val( precoCapa.id );
 					
@@ -44,9 +45,8 @@ $(document).ready( function (){
 
 
 	_this.tabelaJornais = function tabelaJornais( resposta ){
-		var HTML = '';
 
-		 HTML = " <table class = 'table' border = '1' >	"+		
+		var HTML = " <table class = 'table' border = '1' >	"+		
 			"<thead> <tr> <th> Jornal </th> <th>Preco </th>   </tr></thead>"
 				+"<tbody>";
 		$.each(resposta, function ( indice, jornal) {

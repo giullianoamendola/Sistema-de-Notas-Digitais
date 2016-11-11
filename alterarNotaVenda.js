@@ -8,7 +8,7 @@ $(document).ready( function(){
 	$("#dataPagamento").mask("99/99/9999");
 
 	_this.selectPontosVenda = function selectPontosVenda( pontoVenda ){
-		//var pontoVenda = jQuery.parseJSON( pontoVenda );
+		var pontoVenda = jQuery.parseJSON( pontoVenda );
 		var HTML = '<select class ="select col-md-2" id = "pontoVenda">';
 
 		$.each(pontoVenda , function ( indice, row) {
@@ -103,3 +103,5 @@ $(document).ready( function(){
 	});
 */
 });
+
+

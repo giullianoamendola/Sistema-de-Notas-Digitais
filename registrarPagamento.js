@@ -48,7 +48,7 @@ $(document).ready( function(){
 	$("#registrar").on("click", function(){
 		$.ajax({
 			url: "api/NotaVenda/RegistrarPagamento",
-			type: "post",
+			type: "put",
 			data: {
 					pontoVenda : $("#pontoVenda").val(),
 					dataNota : $("#dataNota").val()

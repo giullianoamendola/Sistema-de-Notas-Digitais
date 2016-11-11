@@ -17,7 +17,7 @@
 
 		function listarPrecoCapaDoDia(){
 			try{
-				$data = $data  = date('dmy');
+				$data =  date('dmy');
 				$precosCapa = $this->precoCapaDAO->listarPorData( $data );
 				return $this->geradoraResposta->ok( $precosCapa, GeradoraResposta::TIPO_JSON );
 			}catch( DAOException $e ){

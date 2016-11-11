@@ -54,17 +54,23 @@ $app->post( '/NotaVenda/RegistrarPagamento', function( $request, $response, $arg
 	
 } );
 
+$app->get( '/NotaVenda/ComId', function( $request, $response, $args ) use ( $app, $pdo ) {
+	$params = $request->getQueryParams();
+	$geradoraResposta = new GeradoraRespostaComSlim( $this );
+	$ctrl = new ControladoraNotaVenda($pdo, $geradoraResposta );
+	$ctrl->buscarComId( intval( $params['id']) );
+} );
 
-/*
-$app->put( '/NotaVenda/:id', function( $id ) use ( $app ) {
-	$ctrl = new ControladoraNota( $pdo );
+
+$app->put( '/NotaVenda/:id', function( $id ) use ( $app, $pdo ) {
 	$params = $request->getParsedBody();
-	$ctrl = new ControladoraNotaVenda( $params );
+	$geradoraResposta = new GeradoraRespostaComSlim( $this );
+	$ctrl = new ControladoraNotaVenda( $pdo, $geradoraResposta  );
 	$ctrl->atualizar();
 } );
 
 
-
+/*
 $app->get( '/NotaVenda', function() use ( $app ) {
 	$params = $request->get();
 	$geradoraResposta = new GeradoraRespostaComSlim( $app );
