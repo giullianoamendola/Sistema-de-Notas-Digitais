@@ -1,0 +1,304 @@
+@charset "utf-8";
+/* AEP - Zero Hora - 300x700 - 05/05/2016 @ 10:42 */
+
+body{
+	margin: 0px;
+	padding: 0px;
+}
+
+
+#zerohora-300x700{
+    width: 300px;
+    height: 700px;
+	position:relative;
+	background-color:#ffffff;
+	margin:0;
+	overflow:hidden;
+}
+
+#zerohora-300x700 div.adm-header{
+    width: 300px;
+	height: 33px;
+    -webkit-box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow:    0px 1px 4px 0px rgba(0, 0, 0, 0.3);
+    box-shadow:         0px 1px 4px 0px rgba(0, 0, 0, 0.3);
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAAhCAMAAABUSmYtAAAANlBMVEUAAAA5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTn/xQI5OTk9ZVZTAAAAEHRSTlMAgMBAEPDQ4CCQcGAwsKBQu6JHoAAAAd1JREFUaN7cl+GOhCAMhEsBEUQ83v9lj0kVcguXrMneJTg/rKXZbuaLFqSvT4qGiiFoQ79JB3WsdEN3enzW3t/D0i5DrIlIlRuCuCwgGmVbFXXREsbZGfQvPaaHFfMl1cMyS61uDQ+0mC5rsKwZ9zhmh5Xg1XNxuPaw4NMmtYhTqTM7QTvILp780iMvbPEPs8MqllwJ6x6og6XOh4Y2QDO1HsFjmCFAqvYI6BHRw27Tv4ZcZ0wPywkiEstbqzPiMEOAdN/DzD/gE6w5f1RYGlpg1JTMk8jmnBqeHbFlA1h2JX7p8YDdcLXizslMamLS7aET5xcQEFiGmYSAFeKfPYzWenZYZNKJ63gPFjOj7EcZnWHH0gss3E0Pi8gc3rUhrSD38goZi9t3jw5yXLC1x3NgqRVX0OoG/FK3e9UGPGSToVFWQ7QltAH/FFg+20DiqYO1ybYv665tAAA4zFrAT1sPjcL8sDQ8WcaDsHewaL8OlEWd4VHWFpPAQiuQLtf5YZHPp2zsYZm9Vje6BQtjq/vc8bPDIi1AOHaHUmgTq2mlm7Ao2qtHcBna5/+Qhq7BM9RaqnRbfY8nHEr/Q485wX+3Q8cEAAAwDIP8u56F5esBEmhkBbKC8SwAAADg7wASFPDS3DJdgAAAAABJRU5ErkJggg==');
+    background-repeat: no-repeat;
+}
+
+#zerohora-300x700 div.adm-header a.criteo-opt-out{
+    width: 19px;
+    height: 15px;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    background-image: url(http://static.criteo.net/flash/icon/nai_small.png);
+}
+
+
+#zerohora-300x700 ul.adm-products{
+    width: 294px;
+    height: 661px;
+	padding:0;
+	float:left;
+	list-style:none;
+    background: #ffffff;
+    border: #DFDFDF 3px solid;
+    margin: 0;
+}
+
+#zerohora-300x700 ul.adm-products li{
+    width: 294px;
+    height: 130px;
+    margin: 0;
+    padding: 0;
+    border-top: #DFDFDF 3px solid;
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASYAAACCBAMAAAAZEHilAAAAD1BMVEX////09PT4+Pj6+vr8/PyPtoMnAAABn0lEQVR42s3YsW1DMRAE0WnBywYOEAtgCey/Kid/AVuJI0MzFbzkNji+dB2dKQebKRebKWAzLXSmjc406EyDzZSDzZSLzRSwmRY600ZnGnSmwWbKwWbKxWYK2EwLnWmjMw0606AzHWymXGymgM200Jk2OtOgMw0608FmysVmCthMC51pozMNOtOgMx1splxspoDNtNCZNjrTRmcadKaDzZSLzRSwmRY600Zn2uhMg850sJlysZkCNtNCZ3qhM210pkFnOthMudhMAZtpoTO90Jk2OtOgMx1splxspoDNFHSmFzrTRmcadKaDzZQLMlMAXKYAoDI9G2AydQNEpuHJYzo0i+nnBkhM4UcO02+SwvS2AQbT+wYITMNbnzcd/j3TBjTVwT0JSXzgRfFnpg1opg1opg1opg1oqoN7EpIwbUAzbUAzbUAzbUAzbUATkjBtQDNtQDNtQDNtQDNtQFMd3JOQhGkDmmkDmmkDmmkDmmkDmurgnoQkTBvQTBvQTBvQTBvQTBvwZoqIhGkDmmkDmmkDmmkDmmkDmmkDmpBk7BsIPoHrJDHYYgAAAABJRU5ErkJggg==');
+}
+#zerohora-300x700 ul.adm-products li:first-child{
+    border-top: none;
+}
+#zerohora-300x700 ul.adm-products li a{
+	width: 276px;
+    height: 112px;
+    padding: 9px;
+	cursor: pointer;
+	display: block;
+	border: none;
+	text-decoration: none;
+	margin:0;
+	float:left;
+    overflow: hidden;
+    position: relative;
+}
+#zerohora-300x700 ul.adm-products li a div.adm-product-wrapper{
+    width: 140px;
+    height: 95px;
+    overflow: hidden;
+    position: relative;
+    float: left;
+    margin-left: 9px;
+}
+#zerohora-300x700 ul.adm-products li a div.adm-product{
+    position: absolute;
+    top:0px;
+    width: 140px;
+    -webkit-transition: top 0.4s ease-in-out;
+       -moz-transition: top 0.4s ease-in-out;
+        -ms-transition: top 0.4s ease-in-out;
+         -o-transition: top 0.4s ease-in-out;
+            transition: top 0.4s ease-in-out;
+}
+#zerohora-300x700 ul.adm-products li a:hover div.adm-product{
+    top: -42px;
+}
+#zerohora-300x700 ul.adm-products li a div.adm-product p.adm-cta{
+    width: 140px;
+    height: 25px;
+    display: block;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    background: #FFC502;
+    line-height: 25px;
+    font-size: 12px;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    color: #000000;
+    text-align: center;
+    margin: 10px 0;
+    -webkit-transition: all 0.4s ease-in-out;
+       -moz-transition: all 0.4s ease-in-out;
+        -ms-transition: all 0.4s ease-in-out;
+         -o-transition: all 0.4s ease-in-out;
+            transition: all 0.4s ease-in-out;
+    -webkit-border-radius: 3px;
+       -moz-border-radius: 3px;
+            border-radius: 3px;
+    -webkit-box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.3);
+       -moz-box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.3);
+            box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.3);
+}
+
+#zerohora-300x700 ul.adm-products li div.adm-img{
+    width: 110px;
+    height: 110px;
+	padding:0;
+	background-color:#FFF;
+	overflow:hidden;
+    position: relative;
+    float: left;
+    border: #EBEBEB 1px solid;
+}
+#zerohora-300x700 ul.adm-products li div.adm-img img{
+    max-width: 100%;
+    max-height: 100%;
+    border: none;
+    box-sizing: content-box;
+    margin: 0 auto;
+    display: block;
+    position: absolute;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+}
+
+#zerohora-300x700 ul.adm-products li a div.adm-badge {
+	position: absolute;
+	z-index: 10;
+	width: 45px;
+	height: 45px;
+	right: 3px;
+	top: 3px;
+	border: 2px solid #ffffff;
+	-webkit-border-radius: 100%;
+	   -moz-border-radius: 100%;
+		-ms-border-radius: 100%;
+		 -o-border-radius: 100%;
+			border-radius: 100%;
+    background: #fd6b08;
+    background: -moz-linear-gradient(top, #fd6b08 0%, #e73827 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, #fd6b08), color-stop(100%, #e73827));
+    background: -webkit-linear-gradient(top, #fd6b08 0%, #e73827 100%);
+    background: -o-linear-gradient(top, #fd6b08 0%, #e73827 100%);
+    background: -ms-linear-gradient(top, #fd6b08 0%, #e73827 100%);
+    background: linear-gradient(to bottom, #fd6b08 0%, #e73827 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fd6b08', endColorstr='#e73827', GradientType=0 );
+	-webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.4);
+	   -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.4);
+		-ms-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.4);
+		 -o-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.4);
+			box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.4);
+    -webkit-transform: rotate(15deg);
+ 	   -moz-transform: rotate(15deg);
+    	-ms-transform: rotate(15deg);
+    	 -o-transform: rotate(15deg);  
+    		transform: rotate(15deg);
+	overflow: hidden;
+    font-family: 'Lato', sans-serif;
+}
+
+#zerohora-300x700 ul.adm-products li a div.adm-badge span.adm-discount-number {
+    height: 20px;
+	line-height: 20px;
+	font-size: 16px;
+	border-bottom: 1px solid #ffffff;
+	margin: 5px auto 0 auto;
+}
+
+#zerohora-300x700 ul.adm-products li a div.adm-badge span.adm-discount {
+  	height: 16px;
+	line-height: 18px;
+	font-size: 10px;
+	color: #ffffff;
+	margin: 0 auto;  
+}
+#zerohora-300x700 ul.adm-products li a div.adm-badge span.adm-discount-number, #zerohora-300x700 ul.adm-products li a div.adm-badge span.adm-discount{
+    width: 38px;
+	display: block;
+	text-align: center;
+	color: #ffffff;
+	font-family: 'Lato', sans-serif;
+	font-weight: 700;
+}
+
+#zerohora-300x700 ul.adm-products li div.adm-text-content{
+	width: 140px;
+	height: 98px;
+	padding:0;
+	overflow:hidden;
+	position:relative;
+}
+
+#zerohora-300x700 ul.adm-products li div.adm-text-content p.adm-description{
+	width: 140px;
+	height: 47px;
+	font-size: 13px;
+	color: #888888;
+	margin:0;
+	padding:0;
+	line-height: 16px;
+	font-family: 'Lato', sans-serif;
+	font-weight: 400;
+	overflow:hidden;
+	 -webkit-font-smoothing: antialiased !important;
+    float:left;
+}
+
+#zerohora-300x700 ul.adm-products li a div.adm-text-content div.adm-price-wrapper{
+    width: 140px;
+    margin: 0;
+    padding-bottom:2px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased !important;
+    position:absolute;
+    left:0;
+    overflow:hidden;
+    display: block;
+    height: auto;
+    bottom: 0;
+}
+#zerohora-300x700 ul.adm-products li div.adm-text-content p.adm-price-1-line{
+    font-size: 12px;
+    bottom: 18px;
+    height: 12px;
+    line-height: 12px;
+    margin: 0;
+    color: #3BA5EC;
+    padding-top: 3px;
+}
+#zerohora-300x700 ul.adm-products li div.adm-text-content p.adm-price-2-line{
+    max-height: 30px;
+    font-size: 14px;
+    line-height: 15px;
+    bottom:0px;
+    margin: 2px;
+    font-weight: 700;
+    color: #0088D2;
+}
+#zerohora-300x700 ul.adm-products li div.adm-text-content p.adm-price{
+    max-height: 30px;
+    font-size: 14px;
+    line-height: 15px;
+    bottom:0px;
+    margin: 2px;
+}
+
+#zerohora-300x700 ul.adm-products li p.criteo-advertiser{
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 13px;
+    height: 13px;
+    display: block;
+    overflow: hidden;
+    font-family: 'Lato', sans-serif;
+    margin: 0px;
+    width: 145px;
+    color: #0088D2;
+}
+
+#zerohora-300x700 ul.adm-products li div.adm-text-content p span.adm-striked{
+    text-decoration: line-through;
+}
+
+#zerohora-300x700 ul.adm-products li a div.adm-source{
+    height: 16px;
+    width: auto;
+    position: relative;
+    margin: 0;
+    float: left;
+    margin-left: 9px;
+}
+
+#zerohora-300x700 ul.adm-products li a div.adm-source img.adm-advertiser{
+    width: auto;
+    height: 15px;
+    display: block;
+    border: none;
+    
+}

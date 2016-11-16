@@ -1,0 +1,80 @@
+<html>
+		<head>
+			<meta charset="UTF8">
+			<meta name="fragment" content="!">
+			<meta name="viewport" content="width=device-width initial-scale=1">
+			<link rel="stylesheet" type="text/css" href="vendor/bootstrap/dist/css/bootstrap.min.css" />
+			<link rel="stylesheet" type="text/css" href="vendor/toastr/toastr.min.css" />
+			<link rel="stylesheet" type="text/css" href="vendor/datatables/media/css/jquery.dataTables.min.css" />
+			<link rel="stylesheet" type="text/css" href="vendor/datatables/media/css/dataTables.bootstrap.min.css" />
+			<link rel="stylesheet" type="text/css" href="vendor/datatables.net-select-bs/css/select.bootstrap.min.css" />
+			<link rel="stylesheet" type="text/css" href="vendor/bootstrap3-dialog/dist/css/bootstrap-dialog.min.css" />		
+			<link rel="stylesheet" type="text/css" href="estilo.css" />	
+
+		</head>
+
+
+		<body>
+			<!--Barra do Topo -->
+			<nav class = "navbar navbar-inverse navbar-fixed-top" >
+				<div class="container-fluid">
+					<a class="navbar-brand" href="index.html">Distribuidora de Jornal</a>
+				</div>
+			</nav>
+			
+			<!-- Barra Lateral -->
+			<div class= "container-fluid "	>
+
+					<div class="col-md-2 sidebar">
+						<ul class ="nav nav-sidebar">
+							<li> <a href="criarNotaVenda.html">Criar Nota de Venda </a></li>
+							<li> <a href="emitirNotaVenda.html">Emitir Nota de Venda</a></li>
+							<li> <a href="lancarPrecoCapa.html">Lancar Preco de Capa</a></li>
+							<li> <a href="registrarPagamento.html">Registrar Pagamento</a></li>
+							<li> <a href="alterarNotaVenda.html">Alterar Nota de Venda</a></li>
+							<li> <a href="listagemNotaVenda.html">Listagem Notas de Venda</a></li>
+						</ul>
+					</div>
+
+			</div>
+			<!-- Conteudo -->
+			
+			<div class="col-md-10 col-md-offset-2 main ">
+
+
+			<h1 class='page-header' > Lancar Preco Capa</h1>
+			
+			<span id='conteudo'>
+				<form class='form-horizontal' id = 'formLancarPrecoCapa' name = 'formLancarPrecoCapa' method = 'post'  >
+				<br/>
+					<div id="data" class="col-md-2">
+
+					</div>
+				<br/>
+					<div id='jornais' class="col-md-5">
+
+					</div>
+					
+					<br/>
+					<br/>
+
+
+					<form class= "form-group">
+						<div class="col-md-offset-5 col-md-8">
+							<button class ="btn btn-primary" id="lancar">Lancar</button>
+						</div>
+					</form>	
+
+			</span>		
+
+
+
+	</form>
+
+
+
+	<script src="vendor/jquery/dist/jquery.min.js" ></script>
+	<script src="vendor/bootstrap/dist/js/bootstrap.min.js" ></script>
+	<script src="vendor/jquery-validation/dist/jquery.validate.min.js" ></script>
+	<script src="vendor/jquery.maskedinput/src/jquery.maskedinput.js" ></script>
+	<script src="lancarPrecoCapa.js"></script>

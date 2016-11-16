@@ -1,0 +1,38 @@
+(function() {
+    var sc = document.createElement('script');
+    sc.type = 'text/javascript';
+    sc.async = 'true';
+    sc.src = '//cdn.smartclip.net/multiplayer/4.0.0/smartplay.min.js',
+        sc.onload = sc.onreadystatechange = function() {
+            var rs = this.readyState;
+            if (rs && rs != 'complete' && rs != 'loaded') return;
+            try {
+                SmartPlay('', {
+                    adRequest: {
+                        flash: 'http://ad.sxp.smartclip.net/select?type=dyn&ple=rbs.zeroHora.intxt.cors.br.smartclip~~400x320&cu_smar_cors=1&smar_cors=1&fwd_dt1=&fwd_dt2=&fwd_sz=400x320&&rnd=453429',
+                        html: 'http://ad.sxp.smartclip.net/select?type=dyn&ple=rbs.zeroHora.intxt.html5.br.smartclip~~400x320&cu_smar_cors=1&smar_cors=1&fwd_dt1=&fwd_dt2=&fwd_sz=400x320&&rnd=453429'
+                    },
+                    minAdWidth: 320,
+                    maxAdWidth: 900,
+                    elementLocator: {
+                        allowInViewport: false,
+                        minimumElementWidth: 320,
+                        scanPixelsBelowViewport: 800
+                    },
+                    onStartCallback: (function() {
+                        sc_smartIntxtStart();
+                    }),
+                    onCappedCallback: (function() {
+                        sc_smartIntxtNoad();
+                    }),
+                    onEndCallback: (function() {
+                        sc_smartIntxtEnd();
+                    }),
+                });
+            } catch (e) {
+                console.warn('error caught : ' + e);
+            }
+        };
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(sc, s);
+})();

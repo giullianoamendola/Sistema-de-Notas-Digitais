@@ -1,0 +1,1 @@
+function disqus_config(){this.callbacks.onNewComment=[function(a){RBS.slk.sendComment(a.id);if(typeof AnalyticsRBS!=="undefined"&&typeof AnalyticsRBS.instance!=="undefined"){AnalyticsRBS.instance.trackCommentedContent()}}]};

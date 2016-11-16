@@ -1,0 +1,1 @@
+(function(a){a(window).on("load",b);function b(){var g=a('iframe[src^="http://videos.clicrbs.com.br"]');var f=a("body").attr("class");var e=f.match(/secao-(\S*)/);var d=e&&("zh-"+e[1]);function c(){this.contentWindow.postMessage("skinName: "+d,"*")}d&&g.each(c).on("load",c);g.attr("allowFullScreen",true)}})(jQuery);
