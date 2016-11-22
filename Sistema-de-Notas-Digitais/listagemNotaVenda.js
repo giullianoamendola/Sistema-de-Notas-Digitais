@@ -22,13 +22,13 @@ $(document).ready( function(){
 				var itensNota = notaVenda.itensNota;
 			$.each(itensNota, function ( indice, row) {
 												    
-													var precoCapa = itensNota[indice].precoCapa;
-													var jornal = precoCapa.jornal;
-													HTML +='<tr> <td>'+jornal.nome+'</td> ';
-													HTML += '<td>'+itensNota[indice].qtdEntregue+'</td> ';
-													HTML += ' <td> </td> ';
-													HTML +=' <td>'+precoCapa.preco+'</td> </tr>';
-											});
+				var precoCapa = itensNota[indice].precoCapa;
+				var jornal = precoCapa.jornal;
+				HTML +='<tr> <td>'+jornal.nome+'</td> ';
+				HTML += '<td>'+itensNota[indice].qtdEntregue+'</td> ';
+				HTML += ' <td> </td> ';
+				HTML +=' <td>'+precoCapa.preco+'</td> </tr>';
+			});
 
 		HTML += "</tbody>";
 
@@ -121,7 +121,7 @@ $(document).ready( function(){
 				$("#botoesListagem").show();
 				_this.registrarCliqueEmLinhas();
 			},
-			fail : function(){
+			error : function(){
 				alert("Deu ruim ");
 			}
 
@@ -133,11 +133,11 @@ $(document).ready( function(){
 				$( '#tabelaNotaVenda tbody tr' ).removeClass( 'cor-linha' );
 				$( this ).toggleClass( 'cor-linha' );
 			} );
-		};
+		}
 
 		_this.idSelecionado = function idSelecionado() {
 			return  parseInt($( '#tabelaNotaVenda tbody tr.cor-linha :first' ).html()) ;
-		};
+		}
 		
 
 
@@ -145,13 +145,12 @@ $(document).ready( function(){
 
 	$("#visualizar").on("click", function( event ){
 		event.preventDefault();
-		var notaVenda = '';
 		$.ajax({
 			url :'api/NotaVenda/ComId',
 			type: 'get',
 			data: { id :  _this.idSelecionado() },
 			success : function ( notaVenda ){
-				$("#notaVenda").html(  _this.desenharNotaVenda( notaVenda ) );
+				$("#modalNotaVenda #notaVenda").html(  _this.desenharNotaVenda( notaVenda ) );
 			},
 			error : function(){
 
@@ -162,31 +161,22 @@ $(document).ready( function(){
 	});
 
 	$('#alterar').on('click', function( event ){
+		$(location).attr("href","alterarNotaVenda.html?id="+_this.idSelecionado());
+	});
+
+	$("#remover").on('click', function( event ){
 		event.preventDefault();
-		var notaVenda = '';
+
 		$.ajax({
-			url :'api/NotaVenda/ComId',
-			type: 'get',
-			data: { id :  _this.idSelecionado() },
-			success : function ( notaVenda ){
-				$("#notaVenda").html(  _this.alterarNotaVenda( notaVenda ) );
+			url : 'api/NotaVenda',
+			type : 'delete',
+			data : { id : _this.idSelecionado() },
+			success: function(){
+				alert( "Removido ! ");
 			},
-			error : function(){
+			error: function(){
 
 			}
 		});
-
 	});
-
-	$("#excluir").on('click', function( event ){
-		event.preventDefault();
-	});
-
-
-	
-
-
-
-
-
 });

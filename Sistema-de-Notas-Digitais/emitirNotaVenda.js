@@ -24,18 +24,18 @@ $(document).ready( function(){
 
 
 		$.ajax({ 
-							url: "api/PontoVenda",
-							type: "get",
-							dataType: "html",
-							success: function (resposta) {
+					url: "api/PontoVenda",
+					type: "get",
+					dataType: "html",
+					success: function (resposta) {
 
 
-								$("#pontosVenda").html( _this.selectPontosVenda( resposta ) );
-							
-							},
-							error: function(){
-								alert("Erro Ponto de Venda");
-							}
+						$("#pontosVenda").html( _this.selectPontosVenda( resposta ) );
+					
+					},
+					error: function(){
+						alert("Erro Ponto de Venda");
+					}
 			    });
 
 	$("#botaoProcurar").on("click", function(event){
@@ -43,7 +43,7 @@ $(document).ready( function(){
 		event.preventDefault();
 		var dataEPontoVenda = {	dataNota : $("#dataNota").val(), pontoVenda : $("#pontoVenda").val() };
 		
-	$.ajax({
+		$.ajax({
 						url: "api/NotaVenda/DataEPonto",
 						type: "get", 
 						data: dataEPontoVenda,
@@ -85,7 +85,7 @@ $(document).ready( function(){
 													var jornal = precoCapa.jornal;
 													HTML +='<tr> <td>'+jornal.nome+'</td> ';
 													HTML += '<td>'+itensNota[indice].qtdEntregue+'</td> ';
-													HTML += ' <td> </td> ';
+													HTML += ' <td>'+itensNota[indice].qtdVendido+' </td> ';
 													HTML +=' <td>'+precoCapa.preco+'</td> </tr>';
 											});
 

@@ -69,6 +69,28 @@ $app->put( '/NotaVenda/RegistrarPagamento', function( $request, $response, $args
 	$ctrl->registrarPagamento( $params );
 } );
 
+$app->put( '/NotaVenda/RegistrarVenda', function( $request, $response, $args  ) use ( $app, $pdo ) {
+	$params = $request->getParsedBody();
+	$geradoraResposta = new GeradoraRespostaComSlim( $this );
+	$ctrl = new ControladoraNotaVenda( $pdo, $geradoraResposta  );
+	$ctrl->registrarVenda( $params );
+} );
+
+
+$app->put( '/NotaVenda', function( $request, $response, $args  ) use ( $app, $pdo ) {
+
+	$params = $request->getParsedBody();
+	$geradoraResposta = new GeradoraRespostaComSlim( $this );
+	$ctrl = new ControladoraNotaVenda( $pdo, $geradoraResposta  );
+	$ctrl->alterarNotaVenda( $params );
+} );
+
+$app->delete('/NotaVenda', function( $request, $response, $args ) use( $app, $pdo ){
+	$params = $request->getParsedBody();
+	$geradoraResposta = new GeradoraRespostaComSlim( $this );
+	$ctrl = new ControladoraNotaVenda( $pdo, $geradoraResposta );
+	$ctrl->excluirNotaVenda( $params );
+});
 
 /*
 $app->get( '/NotaVenda', function() use ( $app ) {
@@ -161,9 +183,18 @@ $app->get('/PontoVenda/:id', function( $id ) use ( $app, $pdo){
 	$params = array( 'id'=>$id );
 	$geradoraResposta = new geradoraRespostaComSlim( $this );
 	$controladoraPontoVenda = ControladoraPontoVenda( $pdo , $geradoraResposta );
-	$controladoraPontoVenda->comId( $params );
+	return $controladoraPontoVenda->comId( $params );
 
-})
+});
+
+$app->get('/PontoVendaPorJornaleiro', function( $request, $response, $args ) use ( $app, $pdo){
+	//$params = $request->getParsedBody();
+	$params = array( "id" => 1 );
+	$geradoraResposta = new geradoraRespostaComSlim( $this );
+	$controladoraPontoVenda = new ControladoraPontoVenda( $pdo , $geradoraResposta );
+	return $controladoraPontoVenda->comJornaleiro( $params );
+
+});
 
 
 

@@ -29,7 +29,6 @@
 							<li> <a href="emitirNotaVenda.html">Emitir Nota de Venda</a></li>
 							<li> <a href="lancarPrecoCapa.html">Lancar Preco de Capa</a></li>
 							<li> <a href="registrarPagamento.html">Registrar Pagamento</a></li>
-							<li> <a href="alterarNotaVenda.html">Alterar Notas de Venda</a></li>
 							<li> <a href="listagemNotaVenda.html">Listagem Notas de Venda</a></li>
 						</ul>
 					</div>
@@ -47,49 +46,33 @@
 				<br/>
 
 			
-					<div class="form-group">
-					
-						<label for='dataNota' class = 'col-md-2 control-label' >Data</label>
-
-
-						<div class = 'col-md-2 ' >	
-								<input type='text' id = 'dataNota' name = 'dataNota' />
-						</div>
-
-					</div>	
-
-					<br/>
-					<br/>
-
-
-					<form class="form-group ">
-						<label for='pontosVenda' class = 'col-md-2 control-label'>Ponto de Venda</label>
-						<div id = 'pontosVenda'>
-
-						</div>
-					</form>
-
-					<br/>
-
-						<form class= "form-group">
-							<div class="col-md-offset-5 col-md-8" id = "botaoProcurar">
-								<button class ="btn btn-primary" id="procurar">Procurar</button>
-							</div>
-						</form>	
-
-					<br/>
-					<br/>
-		
 					<div id='notaVenda' class="col-md-offset-1 col-md-8">
 							<input type="hidden" id = "id_notavenda" />
+						<div class="row">
+							<div class="col-md-7" id="pontoVenda"></div>
+						
+						</div>
+							<br/>
+							
+						<div class="row">
+							<div class="col-md-7" id="dataNota"></div>
+					
+						</div>
+							<br/>
+
+						<div class="row">
+
+								<form class="form-group">
+									<label class="control-label col-md-3"> Data Pagamento</label>
+									<div class="col-md-2">
+										<input type="text" id = "dataPagamento" name = "dataPagamento" value=""/>
+									</div>
+								</form>
+
+						</div>
+						<br/>
 							<form class="form-group">
-								<label class="control-label col-md-2"> Data Pagamento</label>
-								<div class="col-md-2">
-									<input type="text" id = "dataPagamento" name = "dataPagamento" />
-								</div>
-							</form>
-							<form class="form-group">
-									<div id = 'itensNota' class = 'col-md-offset-2 col-md-5' >
+									<div id = 'itensNota' class = 'col-md-5' >
 										
 									</div>
 							</form>

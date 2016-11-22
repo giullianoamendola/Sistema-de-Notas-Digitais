@@ -101,6 +101,31 @@
 		return $pontoVendas;
 	}
 
+	function comJornaleiro( $id_jornaleiro ){
+		$this->sql = "SELECT * FROM pontoVenda WHERE id_jornaleiro = :id_jornaleiro ";
+		$pontoVendas = [];
+		try{
+
+			$ps = $this->pdo->prepare($this->sql);
+			$ok = $ps->execute( array( "id_jornaleiro"=> $id_jornaleiro ) );
+
+			$resultado = $ps->fetchAll();
+			foreach( $resultado as $row ){
+				
+				//$jornaleiro = $this->jornaleiroDAO->comId( $row['id_jornaleiro'] );
+				$endereco = $this->enderecoDAO->comId( $row['id_endereco']);		
+				$pontoVenda = new PontoVenda( $row['nome'], null, $endereco, $row['id'] );		
+				$pontoVendas[] = $pontoVenda;
+			}
+
+
+		}catch( Exception $e ){
+			throw new DAOException($e);
+		}
+
+		return $pontoVendas;
+	}
+
 }
 
 

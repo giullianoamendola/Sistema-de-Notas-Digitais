@@ -71,6 +71,28 @@
 
 			}
 
+			function registrarVenda( $params ){
+				try{
+					$id_notaVenda = $params['id'];
+					$notaVenda = $this->notaVendaDAO->comId( $id_notaVenda );
+					$itensNota = $notaVenda->getItensNota() ;
+					$numeroDeJornais =(int) $this->jornalDAO->numeroDeRegistros();
+					$itensForm =  $params["itensNota"] ;
+					for( $contador = 0 ; $contador < $numeroDeJornais ; $contador ++){
+						$row =  $itensForm[$contador] ;
+						$itemNota = $itensNota[$contador] ;
+						$itemNota->setQtdVendido( $row['qtdVendido']);
+						$itensNota[$contador] = $itemNota ;
+					}
+					$notaVenda->setItensNota( $itensNota );
+					$this->notaVendaDAO->registrarVenda( $notaVenda );
+					return $this->geradoraResposta->semConteudo();
+				}catch( DAOException $e ){
+
+				}
+
+			}
+
 			function buscarComId( $id ){
 				try{
 					$notaVenda = $this->notaVendaDAO->comId( $id );
@@ -118,6 +140,38 @@
 				}
 			}
 
+			function alterarNotaVenda( $params ){
+				try{
+
+					$dataPgmt = $params['dataPgmt'];
+					$id = $params['id'];
+					$itensNota = [] ;
+					foreach ( $params['itensNota'] as $itemNota) {
+
+						$itensNota[] = new ItemNota( $itemNota[0], $itemNota[1], null ,(int) $itemNota[2]);
+					}
+
+					$notaVenda = new NotaVenda( null, $dataPgmt, 0, null, $id, $itensNota );
+					$this->notaVendaDAO->alterar( $notaVenda );
+
+				}catch( DAOException $e ){
+
+				}
+
+			}
+
+			function excluirNotaVenda( $params ){
+				try{
+
+					$id = $params['id'];
+					$notaVenda = $this->notaVendaDAO->comId( $id );
+					$this->notaVendaDAO->remover( $notaVenda );
+					
+				}catch( DAOException $e  ){
+
+				}
+			}
+
 			private function calcularPagamento( $jornaleiro ){
 				
 				$tipoPagamento = $jornaleiro->getTipoPagamento();
@@ -141,6 +195,8 @@
 				}
 				return $dataPgmt->format('dmY'); ;
 			}
+
+
 
 			
 

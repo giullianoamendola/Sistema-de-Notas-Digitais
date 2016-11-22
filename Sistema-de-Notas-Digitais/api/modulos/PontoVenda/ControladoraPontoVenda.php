@@ -42,10 +42,21 @@
 
 		function comId( $params ){
 			try{
-				$pontoVenda =  $this->pontoVendaDAO->comId( $params->id );
-				$this->geradoraRespostaResposta->ok( $pontoVenda , GeradoraResposta::TIPO_JSON);
+				$id = $params->id ;
+				$pontoVenda =  $this->pontoVendaDAO->comId( $id);
+				 return $this->geradoraResposta->ok( $pontoVenda , GeradoraResposta::TIPO_JSON);
 			}catch( DAOException $e ){
 				
+			}
+		}
+
+		function comJornaleiro( $params ){
+			try{
+				$id_jornaleiro = $params['id'] ;
+				$pontosVenda = $this->pontoVendaDAO->comJornaleiro( $id_jornaleiro );
+				return  $this->geradoraResposta->ok( $pontosVenda , GeradoraResposta::TIPO_JSON);
+			}catch( DAOException $e ){
+
 			}
 		}
 

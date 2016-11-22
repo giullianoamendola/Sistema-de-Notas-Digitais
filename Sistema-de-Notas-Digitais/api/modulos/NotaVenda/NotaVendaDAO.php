@@ -71,17 +71,28 @@
 		}
 
 		function alterar( $notaVenda ){
-			$this->sql = "UPDATE notaVenda SET dataNota = :dataNota , dataPgmt = :dataPgmt , comissao = :comissao , id_pontoVenda = :id_pontoVenda, paga = :paga WHERE id = :id ";
-			$pontoVenda = $notaVenda->getPontoVenda();
+			$this->sql = "UPDATE notaVenda SET dataPgmt = :dataPgmt  WHERE id = :id ";
+
 			try{
 				$ps = $this->pdo->prepare($this->sql);
-				$ps->execute( array( "dataNota"=>$notaVenda->getDataNota(),
-									 "dataPgmt"=> $notaVenda->getDataPgmt(),
-									 "comissao"=>$notaVenda->getComissao(),
-									 "id_pontoVenda"=>$pontoVenda->getId(),
-									 "paga"=>$notaVenda->getPaga(),
+				$ps->execute( array( "dataPgmt"=> $notaVenda->getDataPgmt(),
 									 "id"=>$notaVenda->getId()
 									));
+
+				$this->sql = "UPDATE itemNota SET qtdEntregue = :qtdEntregue , qtdVendido = :qtdVendido WHERE id = :id ";
+				
+				$itensNota = $notaVenda->getItensNota();
+				
+				foreach ($itensNota as $itemNota ) {
+					var_dump($itemNota);
+					$ps = $this->pdo->prepare($this->sql);
+					$ok = $ps->execute( array( "qtdEntregue"=> $itemNota->getQtdEntregue(),
+									 	 "qtdVendido"=> $itemNota->getQtdVendido(),
+									 	 "id"=> $itemNota->getId()
+									    ));
+					var_dump($ok);
+				}
+
 			}catch( Exception $e ){
 				throw new DAOException( $e );
 			}
@@ -105,7 +116,7 @@
 				$ps = $this->pdo->prepare($this->sql);
 				$ps->execute( array( "id"=> $id));
 				$resultado = $ps->fetchObject();
-				$pontoVenda = $this->pontoVendaDAO->comId( $resultado->id_pontoVenda);
+				$pontoVenda = $this->pontoVendaDAO->comId( $resultado->id_pontovenda);
 				$notaVenda = new NotaVenda( $resultado->dataNota, $resultado->dataPgmt, $resultado->comissao, $pontoVenda, $resultado->id);
 				$this->sql = "SELECT * FROM itemNota WHERE id_notaVenda = :id_notaVenda";
 				$ps = $this->pdo->prepare($this->sql);
@@ -114,8 +125,9 @@
 				$itensNota = [] ;
 				foreach ($resultado as $row ) {
 
-					$precoCapa = $this->precoCapaDAO->comId( $row['id_precoCapa'] );
-					$itemNota = new ItemNota( $row['qtdEntregue'], 0 ,$precoCapa , null , $row['id']);
+					$precoCapa = $this->precoCapaDAO->comId( $row['id_precocapa'] );
+
+					$itemNota = new ItemNota( $row['qtdEntregue'],$row['qtdVendido'] ,$precoCapa , $row['id']);
 
 					$itensNota[] = $itemNota ; 
 				}
@@ -162,7 +174,7 @@
 					$resultado = $ps->fetchAll();	
 					foreach ($resultado as $row ) {
 						$precoCapa = $this->precoCapaDAO->comId( $row['id_precocapa'] );
-						$itemNota = new ItemNota( $row['qtdEntregue'], 0 ,$precoCapa , null , $row['id']);
+						$itemNota = new ItemNota( $row['qtdEntregue'], $row['qtdVendido'] ,$precoCapa , $row['id']);
 
 						$itensNota[] = $itemNota ; 
 					}	
@@ -186,7 +198,7 @@
 				$resultado = $ps->fetchAll();
 				$this->sql = "SELECT * FROM itemNota WHERE id_notaVenda = :id_notaVenda";
 				foreach ($resultado as $row) {
-					$pontoVenda = $this->pontoVendaDAO->comId( $row['id_pontoVenda']);
+					$pontoVenda = $this->pontoVendaDAO->comId( $row['id_pontovenda']);
 					$notaVenda = new NotaVenda( $dataNota, $row['dataPgmt'], $row['comissao'], $pontoVenda, $row['id'], $row['paga']);
 					$id_notaVenda = $notaVenda->getId();
 					$itensNota = [] ;
@@ -195,7 +207,7 @@
 					$r = $ps->fetchAll();			
 					foreach ($r as $row ) {
 
-						$precoCapa = $this->precoCapaDAO->comId( $row['id_precoCapa'] );
+						$precoCapa = $this->precoCapaDAO->comId( $row['id_precocapa'] );
 						$itemNota = new ItemNota( $row['qtdEntregue'], 0 ,$precoCapa , null , $row['id']);
 
 						$itensNota[] = $itemNota ; 	
@@ -262,6 +274,48 @@
 				throw new DAOException( $e );
 			}
 
+		}
+
+		function registrarVenda( $notaVenda ){
+			
+			try{
+
+				$itensNota = $notaVenda->getItensNota();
+				$comissao = $this->calcularComissao( $itensNota );
+				
+				$this->sql = "UPDATE itemNota SET qtdVendido = :qtdVendido WHERE id = :id";
+				foreach ($itensNota as $itemNota ) {
+					$ps = $this->pdo->prepare($this->sql);
+					$ps->execute( array( 
+										 "qtdVendido"=>$itemNota->getQtdVendido(),
+										 "id"=>$itemNota->getId()
+										));
+				}
+
+				$this->sql = "UPDATE notaVenda SET comissao = :comissao WHERE id = :id";
+
+				$ps = $this->pdo->prepare( $this->sql );
+
+				$ps->execute( array( "comissao"=> $comissao , "id"=> $notaVenda->getId()));
+
+			}catch( Exception $e ){
+				throw new DAOException( $e );
+			}
+
+		}
+
+		private function calcularComissao( $itensNota ){
+			$comissao = 0 ;
+			$venda = 0 ;
+			foreach ($itensNota as $itemNota ) {
+				$qtdVendido =  $itemNota->getQtdVendido();
+				$precoCapa = $itemNota->getPrecoCapa();
+				$venda =  $venda + ( $qtdVendido * $precoCapa->getPreco() );
+			}
+
+			$comissao = $venda * 0.15 ;
+
+			return $comissao ;
 		}
 
 	}

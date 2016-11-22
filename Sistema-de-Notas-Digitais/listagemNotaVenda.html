@@ -32,7 +32,6 @@
 							<li> <a href="lancarPrecoCapa.html">Lancar Preco de Capa</a></li>
 							<li> <a href="registrarPagamento.html">Registrar Pagamento</a></li>
 							<li> <a href="listagemNotaVenda.html">Listagem Notas de Venda</a></li>
-							<li> <a href="alterarNotaVenda.html">Alterar Nota de Venda</a></li>
 						</ul>
 					</div>
 
@@ -94,11 +93,36 @@
 					  </div>
 					</div>
 
+
+										<div class="container">
+					  <div class="modal fade" id="modalExclusao" role="dialog">
+					    <div class="modal-dialog modal-sm">
+					      <div class="modal-content">
+					        <div class="modal-header">
+					          <button type="button" class="close" data-dismiss="modal">&times;</button>
+					          <h4 class="modal-title">Remover Nota de Venda</h4>
+					        </div>
+					        <div class="modal-body"   >
+					        	<h2> Deseja mesmo remover ?</h2>
+					
+					        </div>
+					        <div class="modal-footer">
+						 		<div class="col-md-offset-8 col-md-2">
+						 			<button type='button' class='btn btn-primary' id = "remover" data-dismiss='modal'>Remover</button>
+									<button type='button' class='btn btn-default' id = "cancelar" data-dismiss='modal'>Cancelar</button>
+					 			</div>
+					        </div>
+					      </div>
+					    </div>
+					  </div>
+					</div>
+					</div>
+
 					<form class= "form-group">
 						<div class="col-md-offset-8 col-md-6" id ="botoesListagem">
 							<button type='button' class='btn btn-info' id = "visualizar"data-toggle="modal" data-target="#modalNotaVenda">Visualizar</button>
 							<button type='button' class='btn btn-warning' id = "alterar">Alterar</button>
-							<button type='button' class='btn btn-danger' id ="excluir">Excluir</button>
+							<button type='button' class='btn btn-danger' id ="excluir"data-toggle="modal" data-target="#modalExclusao">Excluir</button>
 						</div>
 					</form>
 					<br/>

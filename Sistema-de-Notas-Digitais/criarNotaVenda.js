@@ -46,16 +46,17 @@ $(document).ready( function(){
 			+"<tbody>";
 		$.each(resposta, function ( indice, precoCapa) {
 
-												var jornal = precoCapa.jornal;
+			var jornal = precoCapa.jornal;
 
-												HTML +='<tr> <td>'+jornal.nome+'</td> ';
-						
-												HTML +=' <td>'+precoCapa.preco+'</td> ';
-												
-												HTML +='<td> <input type="text" id =entregue_'+indice+'> </td> </tr>';
+			HTML +='<tr> <td>'+jornal.nome+'</td> ';
 
-												HTML +='<input type="hidden" id = "precoCapa_'+indice+'"value ="'+precoCapa.id+'"/>';
-										});
+			HTML +=' <td>'+precoCapa.preco+'</td> ';
+			
+			HTML +='<td> <input type="text" id =entregue_'+indice+'> </td> </tr>';
+
+			HTML +='<input type="hidden" id = "precoCapa_'+indice+'"value ="'+precoCapa.id+'"/>';
+		
+		});
 
 		HTML += "</tbody>";
 
