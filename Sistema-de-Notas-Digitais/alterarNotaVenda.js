@@ -98,6 +98,14 @@ $(document).ready( function(){
 		});
 	});
 
+	$("#cancelar").on("click",function( event ){
+		
+		event.preventDefault();
+
+		 location.href = "listagemNotaVenda.html";
+	});
+
+
 });
 
 

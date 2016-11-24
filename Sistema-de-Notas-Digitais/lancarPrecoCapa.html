@@ -29,7 +29,7 @@
 						<ul class ="nav nav-sidebar">
 							<li> <a href="criarNotaVenda.html">Criar Nota de Venda </a></li>
 							<li> <a href="emitirNotaVenda.html">Emitir Nota de Venda</a></li>
-							<li> <a href="lancarPrecoCapa.html">Lancar Preco de Capa</a></li>
+							<li> <a href="lancarPrecoCapa.html">Lançar Preço de Capa</a></li>
 							<li> <a href="registrarPagamento.html">Registrar Pagamento</a></li>
 							<li> <a href="listagemNotaVenda.html">Listagem Notas de Venda</a></li>
 						</ul>
@@ -41,13 +41,14 @@
 			<div class="col-md-10 col-md-offset-2 main ">
 
 
-			<h1 class='page-header' > Lancar Preco Capa</h1>
+			<h1 class='page-header' > Lançar Preço Capa</h1>
 			
 			<span id='conteudo'>
 				<form class='form-horizontal' id = 'formLancarPrecoCapa' name = 'formLancarPrecoCapa' method = 'post'  >
 				<br/>
-					<div id="data" class="col-md-2">
-
+					<div class="form-group">
+						<label for ="data" class="control-label col-md-2 ">Data:</label>
+						<input type="text" id = "data" name = "data" readonly  class="col-md-2">
 					</div>
 				<br/>
 					<div id='jornais' class="col-md-5">

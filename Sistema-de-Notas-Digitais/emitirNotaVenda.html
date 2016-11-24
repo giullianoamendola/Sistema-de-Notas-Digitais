@@ -29,7 +29,7 @@
 						<ul class ="nav nav-sidebar">
 							<li> <a href="criarNotaVenda.html">Criar Nota de Venda </a></li>
 							<li> <a href="emitirNotaVenda.html">Emitir Nota de Venda</a></li>
-							<li> <a href="lancarPrecoCapa.html">Lancar Preco de Capa</a></li>
+							<li> <a href="lancarPrecoCapa.html">Lançar Preço de Capa</a></li>
 							<li> <a href="registrarPagamento.html">Registrar Pagamento</a></li>
 							<li> <a href="listagemNotaVenda.html">Listagem Notas de Venda</a></li>
 						</ul>
@@ -38,7 +38,7 @@
 			</div>
 			<!-- Conteudo -->
 			
-			<div class="col-md-10 col-md-offset-2 main ">
+		<div class="col-md-10 col-md-offset-2 main ">
 
 
 			<h1 class='page-header' > Emitir Nota de Venda</h1>
@@ -62,13 +62,9 @@
 					<br/>
 					<br/>
 
+					<div id='notasVenda' class="col-md-10">
 
-					<form class="form-group ">
-						<label for='pontosVenda' class = 'col-md-2 control-label'>Ponto de Venda</label>
-						<div id = 'pontosVenda'>
-
-						</div>
-					</form>
+					</div>
 
 					<br/>
 
@@ -80,32 +76,51 @@
 
 					<br/>
 					<br/>
-		
-					<div id='notaVenda' class="col-md-">
-							<input type="hidden" id = "id_notavenda" />
+					<div class="container">
+					  <div class="modal fade" id="modalNotaVenda" role="dialog">
+					    <div class="modal-dialog modal-sm">
+					      <div class="modal-content">
+					        <div class="modal-header">
+					          <button type="button" class="close" data-dismiss="modal">&times;</button>
+					          <h4 class="modal-title">Nota de Venda</h4>
+					        </div>
+					        <div class="modal-body" id ="notaVenda" >
 
-							<form class="form-group">
-									<div id = 'itensNota' class = 'col-md-offset-2 col-md-5' >
-										
-									</div>
-							</form>
+					        </div>
+					        <div class="modal-footer">
+					          <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+					        </div>
+					      </div>
+					    </div>
+					  </div>
 					</div>
-					
-					<br/>
-					<br/>
+
+					<div id='botaoListagem'>
+						<form class= "form-group">
+							<div class="col-md-offset-5 col-md-8">
+								<button class ="btn btn-primary" id="emitir">Emitir</button>
+								<button class ="btn btn-success" id="botaoMarcarTodos">Marcar Todos</button>
+								<button type='button' class='btn btn-info' id = "visualizar" data-toggle="modal" data-target="#modalNotaVenda">Visualizar</button>
+								<button class ="btn btn-default" id="cancelar">Cancelar</button>
+							</div>
+						</form>	
+
+						
+					</div>
+				</form>
 
 			</span>		
-			<div id='botaoEnvio'>
-				<form class= "form-group">
-					<div class="col-md-offset-5 col-md-8">
-						<button class ="btn btn-primary" id="emitir">Emitir</button>
-						<button class ="btn btn-default" id="cancelar">Cancelar</button>
-					</div>
-				</form>	
 
-				</form>
-			</div>
+
 		</div>
+
+		
+
+
+
+		</body>
+
+	
 
 
 

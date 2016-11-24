@@ -58,8 +58,8 @@ $(document).ready( function(){
 			var paga = notasVenda[indice].paga ;
 			var estado ;
 			var pontoVenda = notasVenda[indice].pontoVenda ;
-			alert( notasVenda[indice].paga );
-			if( paga ){
+			alert( paga );
+			if( paga == 1 ){
 				estado = "SIM";
 			}
 			else{

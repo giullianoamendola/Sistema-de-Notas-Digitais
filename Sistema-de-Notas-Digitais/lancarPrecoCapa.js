@@ -1,6 +1,8 @@
 $(document).ready( function (){
 
 	var _this = this ;
+	
+	$("#data").mask("99/99/9999");
 
 	_this.configurarMascaras = function configurarMascaras(){
 
@@ -27,7 +29,7 @@ $(document).ready( function (){
 			type:"get",
 			dataType:"json",
 			success: function( resposta ){
-				$("#data").html( "<h3>Data:"+resposta[0].data+"</h3>");
+				$("#data").val( resposta[0].data);
 				$.each( resposta, function( indice, precoCapa ){
 
 					//$("#precoCapa_"+indice).mask("?99.9?9");
@@ -38,7 +40,7 @@ $(document).ready( function (){
 				});
 			},
 			error: function( jqHxr ){
-				alert("Nao funcionou ! ");
+				alert("Preco de Capa nao encontrado ");
 			}
 		});
 
@@ -110,7 +112,7 @@ $(document).ready( function (){
 				alert(resposta);
 			},
 			error: function(jqXhr){
-				alert("Nao funcionou ! "+ jqXhr.responseText );
+				//alert("Erro : ! "+ jqXhr.responseText );
 			}
 
 		});

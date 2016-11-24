@@ -17,41 +17,79 @@
 	</head>
 
 	<body>
-<!--
-		<div id = "pontoVenda"></div><br/>
-		<div id = "dataNota"></div><br/>
-		<div id = "dataPagamento"></div><br/>
-		<div id = "itensNota"></div><br/>
-		Total da Venda: <br/>
-		Comissao: <br/>
-		A pagar> <br/>
-	
--->
-	<div id="conteudo">
 
-	</div>
+		<div class="row">
+			<div id="conteudo" class="col-md-3">
+
+			</div>
+		</div>
+
+		<div class="row">
+			<div id="conteudo_2" class="col-md-3">
+
+
+			</div>
+
+		 </div>
 	</body>
 
 
 <script src="vendor/jquery/dist/jquery.min.js" ></script>
 <script src="vendor/bootstrap/dist/js/bootstrap.min.js" ></script>
-<script src="vendor/js-signals/dist/signals.min.js" ></script>
-<script src="vendor/crossroads/dist/crossroads.min.js" ></script>
-<script src="vendor/jquery-validation/dist/jquery.validate.min.js" ></script>
-<script src="vendor/toastr/toastr.min.js" ></script>
-<script src="vendor/datatables/media/js/jquery.dataTables.min.js" ></script>
-<script src="vendor/datatables/media/js/dataTables.bootstrap.min.js" ></script>
-<script src="vendor/datatables.net-select/js/dataTables.select.min.js" ></script>
 <script src="vendor/bootstrap3-dialog/dist/js/bootstrap-dialog.min.js" ></script>	
+<script src="notaVendaImpressao.js"> </script>
+ 	<script> 
 
-	<script> 
-		$(document).ready( function(){
-			
-			myWindow.print();
+ 		var objs = document.cookie;
+ 		var parametros = objs.split("=");
+ 		var notasVenda = JSON.parse(parametros[1]);
 
-		});
+	var desenharNotaVenda = function desenharNotaVenda( notaVenda ){
+		
+		var HTML =  notaVenda.pontoVenda.nome;
+		HTML += "<br/>";
+		HTML += "Data: "+notaVenda.dataNota;
+	    HTML += "<br/>";
+		
 
-	</script>
+
+		 HTML += " <table class = 'table' border = '1' >	"+		
+			"<thead> <tr> <th> Jornal </th> <th> Entregue</th> <th> Vendido </th> <th>Preco </th>   </tr></thead>"
+				+"<tbody>";
+
+		 	var itensNota = notaVenda.itensNota;
+
+
+			$.each(itensNota, function ( indice, row) {					    
+				var precoCapa = itensNota[indice].precoCapa;
+				var jornal = precoCapa.jornal;
+				HTML +='<tr> <td>'+jornal.nome+'</td> ';
+				HTML += '<td>'+itensNota[indice].qtdEntregue+'</td> ';
+				HTML += ' <td> </td> ';
+				HTML +=' <td>'+precoCapa.preco+'</td> </tr>';
+
+			});
+
+			 HTML += "</tbody></table>";
+
+			 HTML += "Comissao:";
+			 HTML += "<br/>";
+		 	 HTML += "Data Pagamento:"+notaVenda.dataPgmt;
+		 	 HTML += "<br/>";
+		 	 HTML += "A pagar:";
+		 	 HTML += "<br/>";
+		 	 HTML += "<br/>";
+		 	 HTML += "<br/>";
+		 	 HTML += "<br/>";
+
+			return HTML ;
+
+	}
+
+	$("#conteudo").html( desenharNotaVenda( notasVenda[0] ) );
+	$("#conteudo_2").html( desenharNotaVenda( notasVenda[1] ) );
+
+	</script> 
 
 
 </html>

@@ -40,6 +40,28 @@
 			}
 		}
 
+		function listarPontoVendaSemNota(){
+			
+			try{
+				
+				$pontosVenda = $this->pontoVendaDAO->listar();
+				$this->geradoraResposta->ok( $pontosVenda , GeradoraResposta::TIPO_JSON);
+/*
+				$msg ='<select class ="select col-md-2" id = "pontovenda">';
+
+				foreach( $pontosVenda as $ponto){
+
+					$msg .= '<option value ="'.$ponto->getId().'">'.$ponto->getNome().'</option>';
+				}
+
+				$msg .= '</select>';
+
+				return $msg;
+*/				
+			}catch( DAOException $e ){
+
+			}
+		}
 		function comId( $params ){
 			try{
 				$id = $params->id ;

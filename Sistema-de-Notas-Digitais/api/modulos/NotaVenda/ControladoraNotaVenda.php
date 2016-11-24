@@ -29,7 +29,7 @@
 				try{
 					$pontoVenda = $this->pontoVendaDAO->comId( $params['pontoVenda'] );
 					$dataPgmt = $this->calcularPagamento( $pontoVenda->getJornaleiro() );
-					$data = $params['dataNota'];
+					$data =  date('d/m/Y');
 				/*	$data = explode("/", $data );
 					$data = implode("", $data );
 					var_dump($data);*/
@@ -172,6 +172,32 @@
 				}
 			}
 
+			function pontosVendaSemNotaDoDia(){
+				$data = date('d/m/Y');
+				
+				try{
+					$notasVenda = $this->notaVendaDAO->buscarPorData( $data );
+					$pontosVenda = $this->pontoVendaDAO->listar();
+					$pontosComNota = [] ;
+					$pontosSemNota = [] ;
+
+					foreach ($notasVenda as $notaVenda ) {
+							$pontosComNota[] = $notaVenda->getPontoVenda();
+					}
+
+					foreach ($pontosVenda as $pontoVenda ) {
+							if( ! in_array( $pontoVenda, $pontosComNota )){
+								$pontosSemNota[] = $pontoVenda ;
+							}
+					}
+
+					return $this->geradoraResposta->ok( $pontosSemNota, GeradoraResposta::TIPO_JSON );
+
+				}catch( DAOException $e ){
+
+				}
+			}
+
 			private function calcularPagamento( $jornaleiro ){
 				
 				$tipoPagamento = $jornaleiro->getTipoPagamento();
@@ -193,7 +219,7 @@
 							
 						break;
 				}
-				return $dataPgmt->format('dmY'); ;
+				return $dataPgmt->format('d/m/Y'); ;
 			}
 
 

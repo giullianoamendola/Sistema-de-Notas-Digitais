@@ -208,7 +208,7 @@
 					foreach ($r as $row ) {
 
 						$precoCapa = $this->precoCapaDAO->comId( $row['id_precocapa'] );
-						$itemNota = new ItemNota( $row['qtdEntregue'], 0 ,$precoCapa , null , $row['id']);
+						$itemNota = new ItemNota( $row['qtdEntregue'], 0 ,$precoCapa , $row['id']);
 
 						$itensNota[] = $itemNota ; 	
 						$notaVenda->setItensNota( $itensNota );

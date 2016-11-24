@@ -17,7 +17,7 @@
 
 		function listarPrecoCapaDoDia(){
 			try{
-				$data =  date('dmy');
+				$data =  date('d/m/Y');
 				$precosCapa = $this->precoCapaDAO->listarPorData( $data );
 				return $this->geradoraResposta->ok( $precosCapa, GeradoraResposta::TIPO_JSON );
 			}catch( DAOException $e ){
@@ -30,14 +30,14 @@
 		function listarPrecoCapaPorData(){
 			try{
 
-				$data  = date('dmy');
+				$data  = date('d/m/Y');
 				$precosCapa = $this->precoCapaDAO->listarPorData( $data );
 				
 				if( $precosCapa == null ){
 					
 					$data = new DateTime( $data );
   					$data->modify('-1 week');
-					$precosCapa = $this->precoCapaDAO->listarPorData( $data->format('dmy') );
+					$precosCapa = $this->precoCapaDAO->listarPorData( $data->format('d/m/Y') );
 					
 					if( $precosCapa != null ){
 						for($contador = 0 ; $contador < $this->jornalDAO->numeroDeRegistros() ; $contador = $contador + 1 ){
@@ -55,14 +55,13 @@
 
 		}
 
-
 		function lancarPrecoCapa( $params ){
 			try{
 				
 				$precosCapa = $params['precosCapa'];
 				$jornais = $params['jornais'];
 				$contador = 0 ;
-				$data = date('dmy');
+				$data = date('d/m/Y');
 				$numeroDeJornais =(int) $this->jornalDAO->numeroDeRegistros();
 				
 				for ($contador = 0 ; $contador < $numeroDeJornais ; $contador = $contador + 1) { 

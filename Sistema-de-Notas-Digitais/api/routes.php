@@ -61,6 +61,13 @@ $app->get( '/NotaVenda/ComId', function( $request, $response, $args ) use ( $app
 	$ctrl->buscarComId( intval( $params['id']) );
 } );
 
+$app->get('/NotaVenda/PontosSemNota', function( $request, $response, $args )use ( $app, $pdo){
+	$params = $request->getParsedBody();
+	$geradoraResposta = new GeradoraRespostaComSlim( $this );
+	$ctrl = new ControladoraNotaVenda($pdo, $geradoraResposta );
+	 $ctrl->pontosVendaSemNotaDoDia();
+});
+
 
 $app->put( '/NotaVenda/RegistrarPagamento', function( $request, $response, $args  ) use ( $app, $pdo ) {
 	$params = $request->getParsedBody();
@@ -194,6 +201,13 @@ $app->get('/PontoVendaPorJornaleiro', function( $request, $response, $args ) use
 	$controladoraPontoVenda = new ControladoraPontoVenda( $pdo , $geradoraResposta );
 	return $controladoraPontoVenda->comJornaleiro( $params );
 
+});
+
+$app->get('/PontoVendaSemNota' , function( $resquest, $response, $args ) use( $app, $pdo ){
+	$params = $request->getParsedBody();
+	$geradoraResposta = new GeradoraRespostaComSlim( $this );
+	$controladoraPontoVenda = new ControladoraPontoVenda( $pdo, $geradoraResposta );
+	return $controladoraPontoVenda->listarPontoVendaSemNota();
 });
 
 

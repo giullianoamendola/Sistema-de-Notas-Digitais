@@ -34,15 +34,12 @@ $(document).ready( function(){
 
 	_this = this ;
 
-	$("#dataNota").mask("99/99/9999");
-	$("#dataPagamento").mask("99/99/9999");
-
 	_this.tabelaItemNota = function tabelaItemNota( resposta ){
 
 	var HTML = '';
 
 	 HTML = " <table class = 'table' border = '1' >	"+		
-		"<thead> <tr> <th> Jornal </th> <th>Preco </th> <th>Entregue</th>   </tr></thead>"
+		"<thead> <tr> <th> Jornal </th> <th>Preço </th> <th>Entregue</th>   </tr></thead>"
 			+"<tbody>";
 		$.each(resposta, function ( indice, precoCapa) {
 
@@ -64,6 +61,7 @@ $(document).ready( function(){
 	}
 
 	_this.selectPontosVenda = function selectPontosVenda( pontoVenda ){
+		
 		var pontoVenda = jQuery.parseJSON( pontoVenda );
 		var HTML = '<select class ="select col-md-2" id = "pontoVenda">';
 
@@ -78,36 +76,44 @@ $(document).ready( function(){
 		return HTML ;
 	}
 
-	$.ajax({ 
-		url: "api/PrecoCapa",
-		type: "get",
-		//dataType: "json",
-		success: function (resposta) {
-
-			$("#itensNota").html( _this.tabelaItemNota( resposta ) );
-		},
-		error: function(){
-					alert("Erro PrecoCapa");
+	_this.zerarLista = function zerarLista(){
+		var MAXITENSPORNOTA = 5 ;
+		for( var contagem = 0 ; contagem < MAXITENSPORNOTA ; contagem = contagem + 1){
+			$("#entregue_"+contagem).val(0);
 		}
+	}
 
-		});
+	_this.buscarPrecoCapa = function buscarPrecoCapa(){
+		$.ajax({ 
+			url: "api/PrecoCapa",
+			type: "get",
+			//dataType: "json",
+			success: function (resposta) {
 
+				$("#itensNota").html( _this.tabelaItemNota( resposta ) );
+			},
+			error: function(){
+						alert("Erro PrecoCapa");
+			}
 
-	$.ajax({ 
-		url: "api/PontoVenda",
-		type: "get",
-		dataType: "html",
-		success: function (resposta) {
+			});
+	}();
 
-			$("#pontosVenda").html( _this.selectPontosVenda( resposta ) );
+	_this.buscarPontoVenda = function buscarPontoVenda(){
+		$.ajax({ 
+				url: "api/NotaVenda/PontosSemNota",
+				type: "get",
+				dataType: "html",
+				success: function (resposta) {
 
-		},
-		error: function(){
-			alert("Erro Ponto de Venda");
-		}
-
-	});
-	
+					$("#pontosVenda").html( _this.selectPontosVenda( resposta ) );
+				
+				},
+				error: function( jqXHR ){
+					alert("Erro Ponto de Venda");
+				}
+			    });
+	}();
 
 
 	_this.qtdEntregue =  function qtdEntregue(){	
@@ -137,7 +143,6 @@ $(document).ready( function(){
 	}
 
 
-
 	$("#criar").on( "click", function( event ){
 
 		event.preventDefault();
@@ -159,7 +164,21 @@ $(document).ready( function(){
 					success: function (resposta) {
 
 						alert(" Nota Criada "+ resposta);
+						//document.location.reload();
+						_this.zerarLista();
+						$.ajax({ 
+							url: "api/NotaVenda/PontosSemNota",
+							type: "get",
+							dataType: "html",
+							success: function (resposta) {
 
+								$("#pontosVenda").html( _this.selectPontosVenda( resposta ) );
+							
+							},
+							error: function( jqXHR ){
+								alert("Erro Ponto de Venda");
+							}
+						 });
 
 
 					},
