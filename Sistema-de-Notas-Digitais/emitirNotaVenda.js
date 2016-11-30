@@ -1,8 +1,8 @@
 $(document).ready( function(){
 
 	_this = this;
+	_this.resposta = null ;
 
-	_this.resposta
 	_this.selectPontosVenda = function selectPontosVenda( pontoVenda ){
 		var pontoVenda = jQuery.parseJSON( pontoVenda );
 		var HTML = '<select class ="select col-md-2" id = "pontoVenda">';
@@ -17,8 +17,8 @@ $(document).ready( function(){
 
 		return HTML ;
 	}
-	$("#dataNota").mask("99/99/9999");
-	
+
+	$("#dataNota").mask("99/99/9999");	
 	$("#botaoListagem").hide();
 	$("#botaoMarcarTodos").hide();
 
@@ -48,9 +48,9 @@ $(document).ready( function(){
 			data : { dataNota : $("#dataNota").val() },
 			success : function( resposta ){
 
-				_this.resposta = jQuery.parseJSON(resposta); ;
-
-				$("#notasVenda").html(_this.listagemNotaVenda(_this.resposta ) );
+				var notasVenda = jQuery.parseJSON(resposta); ;
+				_this.resposta = notasVenda ;
+				$("#notasVenda").html(_this.listagemNotaVenda( notasVenda ) );
 				$("#botaoProcurar").hide();
 				$("#botaoListagem").show();
 				$("#botaoMarcarTodos").show();
@@ -101,7 +101,6 @@ $(document).ready( function(){
 
 	_this.desenharNotaVenda = function desenharNotaVenda( notaVenda ){
 		
-		//var notaVenda = jQuery.parseJSON( notaVenda );
 		var HTML =  notaVenda.pontoVenda.nome;
 		HTML += "<br/>";
 		HTML += "Data: "+notaVenda.dataNota;
@@ -139,7 +138,6 @@ $(document).ready( function(){
 //PONTO VENDA
 	_this.registrarCliqueEmLinhas = function registrarCliqueEmLinhas() {
 		$( '#tabelaNotaVenda tbody tr' ).click( function linhaClick() {
-			//$( '#tabelaNotaVenda tbody tr' ).removeClass( 'cor-linha' );
 			$( this ).toggleClass( 'cor-linha' );
 		} );
 	}
@@ -153,7 +151,7 @@ $(document).ready( function(){
 
  		$( '#tabelaNotaVenda tbody tr.cor-linha ' ).each( function( indice ){
 			linha = $(this).children();
-			obj =  $(linha[0]).text()
+			obj =  $(linha[0]).text();
 			id_selecionados[indice] = obj ;
 
 		});
@@ -166,7 +164,7 @@ $(document).ready( function(){
 		var objetosSelecionados = [] ;
 		var cont = 0 ;
 
-		$.each( _this.resposta , function( i){
+		$.each( _this.resposta , function( i ){
 			
 			$.each( id_selecionados , function( j ){
 				if( _this.resposta[i].id == id_selecionados[j]){
@@ -185,14 +183,13 @@ $(document).ready( function(){
 		
 		event.preventDefault();
 		var id_selecionados = _this.selecionados() ;
-		 var objetosSelecionados = _this.montarSelecionados( id_selecionados );
+		var objetosSelecionados = _this.montarSelecionados( id_selecionados );
 		
-		 notasVenda = JSON.stringify( objetosSelecionados) ;
-		 document.cookie = "notasVenda="+notasVenda;
+		notasVenda = JSON.stringify( objetosSelecionados ) ;
+		localStorage.setItem("notasVenda", notasVenda);
 
+		location.href = "notaVendaImpressao.html";
 
-		 location.href = "notaVendaImpressao.html";
-		//$(location).attr("href","notaVendaImpressao.js");
 
 	});
 

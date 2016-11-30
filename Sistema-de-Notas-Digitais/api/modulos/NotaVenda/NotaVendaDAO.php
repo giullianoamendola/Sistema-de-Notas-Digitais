@@ -18,17 +18,7 @@
 		function adicionar( &$notaVenda ){
 			
 			$pontoVenda = $notaVenda->getPontoVenda();
-/*
-			try{
-				$notaExistente = $this->buscarPorPontoEData( $pontoVenda , $notaVenda->getDataNota() );
-				if( $notaExistente != null){
-					return ...
-				}
 
-			}catch( Exception $e ){
-				throw new DAOException ( $e );
-			}
-*/	
 			$this->sql  = "INSERT INTO notaVenda( dataNota, dataPgmt, comissao, id_pontoVenda) VALUES( :dataNota, :dataPgmt, :comissao, :id_pontoVenda) ";
 			$pontoVenda = $notaVenda->getPontoVenda();
 			try{
@@ -49,10 +39,9 @@
 			$id_notaVenda =(int) $notaVenda->getId();
 			$itensNota = $notaVenda->getItensNota();
 			$contador = 0;
-			$numeroDeJornais = 5;//MUDAR DEPOIS PEGAR DO BANCO
-			for($contador = 0 ; $contador < $numeroDeJornais ; $contador = $contador +1  ) {
 
-					$itemNota = $itensNota[$contador];
+			foreach($itensNota as  $itemNota  ) {
+
 					$precoCapa = $itemNota->getPrecoCapa();
 					$notaVenda = $itemNota->getNotaVenda();
 					try{
@@ -199,7 +188,7 @@
 				$this->sql = "SELECT * FROM itemNota WHERE id_notaVenda = :id_notaVenda";
 				foreach ($resultado as $row) {
 					$pontoVenda = $this->pontoVendaDAO->comId( $row['id_pontovenda']);
-					$notaVenda = new NotaVenda( $dataNota, $row['dataPgmt'], $row['comissao'], $pontoVenda, $row['id'], $row['paga']);
+					$notaVenda = new NotaVenda( $dataNota, $row['dataPgmt'], $row['comissao'], $pontoVenda, $row['id'],null, $row['paga']);
 					$id_notaVenda = $notaVenda->getId();
 					$itensNota = [] ;
 					$ps = $this->pdo->prepare( $this->sql );
@@ -211,9 +200,9 @@
 						$itemNota = new ItemNota( $row['qtdEntregue'], 0 ,$precoCapa , $row['id']);
 
 						$itensNota[] = $itemNota ; 	
-						$notaVenda->setItensNota( $itensNota );
-						
+							
 					}
+					$notaVenda->setItensNota( $itensNota );
 					$notasVenda[] = $notaVenda ;
 				}
 			}catch( Exception $e ){

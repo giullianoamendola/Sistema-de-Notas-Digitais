@@ -71,7 +71,7 @@
 
 		function listar(){
 
-			$cidades[] = '';
+			$cidades = [] ;
 			$this->sql = " SELECT * FROM cidade ";
 			try{
 				$resultado = $this->pdo->query($this->sql);

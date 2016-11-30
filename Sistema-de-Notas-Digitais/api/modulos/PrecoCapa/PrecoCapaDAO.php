@@ -75,8 +75,8 @@
 			$this->sql = "SELECT * FROM precoCapa";
 			$precosCapa = [];
 			try{
-				$resutlado = $this->pdo->query( $this->sql );
-				foreach ($resutlado as $row) {
+				$resultado = $this->pdo->query( $this->sql );
+				foreach ($resultado as $row) {
 					$jornal = $this->jornalDAO->comId( $row['id_jornal']);
 					$precoCapa = new PrecoCapa( $row['preco'], $row['data'], $jornal, $row['id']);
 					$precosCapa[] = $precoCapa;

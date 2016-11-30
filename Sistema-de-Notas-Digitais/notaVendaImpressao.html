@@ -7,11 +7,7 @@
 
 	<head>
 		<link rel="stylesheet" type="text/css" href="vendor/bootstrap/dist/css/bootstrap.min.css" />
-		<link rel="stylesheet" type="text/css" href="vendor/toastr/toastr.min.css" />
-		<link rel="stylesheet" type="text/css" href="vendor/datatables/media/css/jquery.dataTables.min.css" />
-		<link rel="stylesheet" type="text/css" href="vendor/datatables/media/css/dataTables.bootstrap.min.css" />
-		<link rel="stylesheet" type="text/css" href="vendor/datatables.net-select-bs/css/select.bootstrap.min.css" />
-		<link rel="stylesheet" type="text/css" href="vendor/bootstrap3-dialog/dist/css/bootstrap-dialog.min.css" />		
+		<link rel="stylesheet" type="text/css" href="vendor/toastr/toastr.min.css" />	
 		<link rel="stylesheet" type="text/css" href="estilo.css" />	
 
 	</head>
@@ -24,13 +20,7 @@
 			</div>
 		</div>
 
-		<div class="row">
-			<div id="conteudo_2" class="col-md-3">
 
-
-			</div>
-
-		 </div>
 	</body>
 
 
@@ -40,56 +30,116 @@
 <script src="notaVendaImpressao.js"> </script>
  	<script> 
 
- 		var objs = document.cookie;
- 		var parametros = objs.split("=");
- 		var notasVenda = JSON.parse(parametros[1]);
+ 		var objs = localStorage.getItem("notasVenda");
+ 		var notasVenda = JSON.parse(objs);
 
-	var desenharNotaVenda = function desenharNotaVenda( notaVenda ){
+		var desenharNotaVenda = function desenharNotaVenda( notaVenda ){
 		
-		var HTML =  notaVenda.pontoVenda.nome;
-		HTML += "<br/>";
-		HTML += "Data: "+notaVenda.dataNota;
-	    HTML += "<br/>";
-		
+			var HTML =  notaVenda.pontoVenda.nome;
+			HTML += "<br/>";
+			HTML += "Data: "+notaVenda.dataNota;
+		    HTML += "<br/>";
+			
 
 
-		 HTML += " <table class = 'table' border = '1' >	"+		
-			"<thead> <tr> <th> Jornal </th> <th> Entregue</th> <th> Vendido </th> <th>Preco </th>   </tr></thead>"
-				+"<tbody>";
+			 HTML += " <table class = 'table' border = '1' >	"+		
+				"<thead> <tr> <th> Jornal </th> <th> Entregue</th> <th> Vendido </th> <th>Preco </th>   </tr></thead>"
+					+"<tbody>";
 
-		 	var itensNota = notaVenda.itensNota;
+			 	var itensNota = notaVenda.itensNota;
 
 
-			$.each(itensNota, function ( indice, row) {					    
-				var precoCapa = itensNota[indice].precoCapa;
-				var jornal = precoCapa.jornal;
-				HTML +='<tr> <td>'+jornal.nome+'</td> ';
-				HTML += '<td>'+itensNota[indice].qtdEntregue+'</td> ';
-				HTML += ' <td> </td> ';
-				HTML +=' <td>'+precoCapa.preco+'</td> </tr>';
+				$.each(itensNota, function ( indice, row) {					    
+					var precoCapa = itensNota[indice].precoCapa;
+					var jornal = precoCapa.jornal;
+					HTML +='<tr> <td>'+jornal.nome+'</td> ';
+					HTML += '<td>'+itensNota[indice].qtdEntregue+'</td> ';
+					HTML += ' <td> </td> ';
+					HTML +=' <td>'+precoCapa.preco+'</td> </tr>';
 
-			});
+				});
 
-			 HTML += "</tbody></table>";
+				 HTML += "</tbody></table>";
 
-			 HTML += "Comissao:";
-			 HTML += "<br/>";
-		 	 HTML += "Data Pagamento:"+notaVenda.dataPgmt;
-		 	 HTML += "<br/>";
-		 	 HTML += "A pagar:";
-		 	 HTML += "<br/>";
-		 	 HTML += "<br/>";
-		 	 HTML += "<br/>";
-		 	 HTML += "<br/>";
+				 HTML += "Comissao:";
+				 HTML += "<br/>";
+			 	 HTML += "Data Pagamento:"+notaVenda.dataPgmt;
+			 	 HTML += "<br/>";
+			 	 HTML += "A pagar:";
+			 	 HTML += "<br/>";
+			 	 HTML += "<br/>";
+			 	 HTML += "<br/>";
+			 	 HTML += "<br/>";
 
-			return HTML ;
+				return HTML ;
 
 	}
 
-	$("#conteudo").html( desenharNotaVenda( notasVenda[0] ) );
-	$("#conteudo_2").html( desenharNotaVenda( notasVenda[1] ) );
+	var desenharTabela = function desenharTabela( notasVenda ){
+		var HTML = "<table class = 'table col-md-12' border = '1' >	<tbody>";
 
+		var divisor = 3 ;
+		
+		HTML += "<tr>";
+
+		var cont = 0;
+
+		$.each( notasVenda , function( indice ){
+		if( cont == 3 ){
+			HTML += "</tr>";	
+			HTML += "<tr>";
+			cont = 0;
+		}
+			HTML += "<td>";
+			HTML += desenharNotaVenda(notasVenda[indice])+"</td>";
+
+			cont = cont + 1;
+		});
+		HTML += "</tr>";
+		HTML += "</tbody>";
+		HTML += "</table>";
+		return HTML;
+	}
+		$("#conteudo").html( desenharTabela( notasVenda ) );
+		localStorage.removeItem("notasVenda");
 	</script> 
+
+
+</html>
+
+
+
+
+
+
+
+
+
+<html>
+
+	<head>
+		<link rel="stylesheet" type="text/css" href="vendor/bootstrap/dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="vendor/toastr/toastr.min.css" />	
+		<link rel="stylesheet" type="text/css" href="estilo.css" />	
+
+	</head>
+
+	<body>
+	<div class="col-md-12  main ">
+		<div class="row">
+			<div id="conteudo" class="col-md-12">
+
+			</div>
+		</div>
+	</div>
+	</body>
+
+
+<script src="vendor/jquery/dist/jquery.min.js" ></script>
+<script src="vendor/bootstrap/dist/js/bootstrap.min.js" ></script>
+<script src="vendor/bootstrap3-dialog/dist/js/bootstrap-dialog.min.js" ></script>	
+<script src="notaVendaImpressao.js"> </script>
+ 
 
 
 </html>

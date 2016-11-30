@@ -5,6 +5,9 @@ $(document).ready( function(){
 	$("#dataNota").mask("99/99/9999");
 	$("#dataPagamento").mask("99/99/9999");
 	$("#resultadoDasVendas").hide();
+	// $("#comissao").maskMoney();
+	// $("#totalVenda").maskMoney();
+	// $("#valorDoPagamento").maskMoney();
 
 	_this.selectPontosVenda = function selectPontosVenda( pontoVenda ){
 		var pontoVenda = jQuery.parseJSON( pontoVenda );
@@ -101,7 +104,6 @@ $(document).ready( function(){
 		
 		var totalVenda = 0 ;
 		var valorDoPagamento = 0;
-
 		$.each( itensNota, function( indice, row  ){
 			var precoCapa = row.precoCapa ;
 			totalVenda = totalVenda + ( precoCapa.preco * row.qtdVendido ) ;

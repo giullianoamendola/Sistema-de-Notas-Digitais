@@ -35,11 +35,7 @@ $(document).ready( function(){
 		HTML +="Comissao:"+notaVenda.comissao;
 		HTML +="</br>";
 
-
-
-
-
-			return HTML ;
+		return HTML ;
 
 	}
 
@@ -84,7 +80,7 @@ $(document).ready( function(){
 	_this.alterarNotaVenda = function alterarNotaVenda( notaVenda ){
 		
 		var notaVenda = jQuery.parseJSON( notaVenda );
-		var HTML = "<table class 'table' border = '1' >";
+		var HTML = "<table class = 'table' border = '1' >";
 		HTML += "<thead><tr> <th> Jornal </th> <th> Preco Capa </th> <th> Entregue </th>";
 		HTML += "<th>Vendido</th> </tr> </thead> ";
 		HTML += "<tbody>";
@@ -122,7 +118,7 @@ $(document).ready( function(){
 				_this.registrarCliqueEmLinhas();
 			},
 			error : function(){
-				alert("Deu ruim ");
+				alert("Erro ao listar");
 			}
 
 		});

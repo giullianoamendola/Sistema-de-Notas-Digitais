@@ -1,43 +1,57 @@
 $(document).ready( function (){
 
 	var _this = this ;
-	
+	_this.precoCapa = null;
+	_this.numeroRegistros = null ;
 	$("#data").mask("99/99/9999");
 
 	_this.configurarMascaras = function configurarMascaras(){
 
 	}
 
-	$.ajax({
-		url: "api/Jornal",
-		type:"get",
-		dataType: "json",
-		success: function( resposta ){
-			$("#jornais").html( _this.tabelaJornais( resposta ) );
-			_this.buscarPrecosCapa();
-		},
-		error: function(){
+	_this.buscarJornais = function buscarJornais(){
+			$.ajax({
+				url: "api/Jornal",
+				type:"get",
+				dataType: "json",
+				success: function( resposta ){
+					$("#jornais").html( _this.tabelaJornais( resposta ) );
+					_this.buscarPrecosCapa();
+				},
+				error: function(){
 
-		}
+				}
+			});
+	}();
 
-	});
 
-	_this.buscarPrecosCapa = function buscarJornais(){
+
+
+
+	_this.inserirPrecosNaTabela = function inserirPrecosNaTabela( precoCapa ){
+
+		$.each( precoCapa, function( indice, precoCapa ){
+
+					$("#precoCapa_"+indice).maskMoney();
+					$("#precoCapa_"+indice).val( precoCapa.preco);
+					$("#precoCapa_"+indice).maskMoney();
+					$("#precoCapaId_"+indice).val( precoCapa.id );
+					
+		});
+	}
+
+	_this.setarData = function setarData( data ){
+		$("#data").val( data ); 
+	}
+	_this.buscarPrecosCapa = function buscarPrecosCapa(){
 
 		$.ajax({
 			url: "api/PrecoCapaPorData",
 			type:"get",
 			dataType:"json",
 			success: function( resposta ){
-				$("#data").val( resposta[0].data);
-				$.each( resposta, function( indice, precoCapa ){
-
-					//$("#precoCapa_"+indice).mask("?99.9?9");
-					$("#precoCapa_"+indice).val( precoCapa.preco);
-					console.log(precoCapa.id );
-					$("#precoCapaId_"+indice).val( precoCapa.id );
-					
-				});
+				_this.setarData( resposta[0].data );
+				_this.inserirPrecosNaTabela( resposta );
 			},
 			error: function( jqHxr ){
 				alert("Preco de Capa nao encontrado ");
@@ -54,47 +68,37 @@ $(document).ready( function (){
 			"<thead> <tr> <th> Jornal </th> <th>Preco </th>   </tr></thead>"
 				+"<tbody>";
 		$.each(resposta, function ( indice, jornal) {
-			//BOTAR ID NA LINHA 
+
 			HTML +='<tr>  <td>'+jornal.nome+'</td> ';
 			HTML += '<input type="hidden" id = "jornal_'+indice+'"value = "'+jornal.id+'"/>';
 			HTML +=' <td><input type="text" id = "precoCapa_'+indice+'" value = ""/></td> </tr>';								
 			HTML +='<input type="hidden" id = "precoCapaId_'+indice+'" />'
+			_this.numeroRegistros = indice ;
 		});
 
+		_this.numeroRegistros = _this.numeroRegistros + 1; 
 		HTML += '</table>';
 
 		return HTML;
 
 	}
 	
-	_this.precosCapa =  function precosCapa(){	
+	_this.precosCapa =  function precosCapa( ){	
 		var precosCapa = [] ;
-		var MAXITENSPORNOTA =5;
 		var contagem = 0;
-		for( contagem = 0; contagem < MAXITENSPORNOTA ; contagem = contagem + 1){
+		for( contagem = 0; contagem < _this.numeroRegistros ; contagem = contagem + 1){
 
-			var precoCapa = [] ;
-			precoCapa[0] = $("#jornais #precoCapa_"+contagem).val();
-			precoCapa[1] = $("#jornais #precoCapaId_"+contagem).val();
+			var precoCapa = { 
+							jornal : $("#jornais #jornal_"+contagem).val(),
+							preco : $("#jornais #precoCapa_"+contagem).val(),
+							id : $("#jornais #precoCapaId_"+contagem).val()
+						};
 
 			precosCapa[contagem] = precoCapa ;
 			
 		}
-			console.log( precosCapa );
+
 		return precosCapa ;
-	}
-
-	_this.jornais =  function jornais(){	
-		var jornais = [] ;
-		var MAXITENSPORNOTA =5;
-		var contagem = 0;
-		for( contagem = 0; contagem < MAXITENSPORNOTA ; contagem = contagem + 1){
-
-			jornais[contagem] = $("#jornais #jornal_"+contagem).val();
-
-		}
-
-		return jornais ;
 	}
 
 	$("#lancar").on("click", function( event ){
@@ -105,8 +109,7 @@ $(document).ready( function (){
 			type:"post",
 			dataType:"json",
 			data: {
-				precosCapa:	_this.precosCapa(),
-				jornais: _this.jornais()
+				precosCapa:	_this.precosCapa()
 			},
 			success: function( resposta ){
 				alert(resposta);

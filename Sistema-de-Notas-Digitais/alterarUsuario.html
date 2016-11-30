@@ -1,0 +1,92 @@
+<html>
+		<head>
+			<meta charset="UTF8">
+			<meta name="fragment" content="!">
+			<meta name="viewport" content="width=device-width initial-scale=1">
+			<link rel="stylesheet" type="text/css" href="vendor/bootstrap/dist/css/bootstrap.min.css" />
+			<link rel="stylesheet" type="text/css" href="vendor/bootstrap3-dialog/dist/css/bootstrap-dialog.min.css" />		
+			<link rel="stylesheet" type="text/css" href="estilo.css" />	
+
+		</head>
+
+
+		<body>
+			<!--Barra do Topo -->
+			<nav class = "navbar navbar-inverse navbar-fixed-top" >
+				<div class="container-fluid">
+					<a class="navbar-brand" href="index.html">Distribuidora de Jornal</a>
+				</div>
+			</nav>
+			
+			<!-- Barra Lateral -->
+			<div class= "container-fluid "	>
+
+					<div class="col-md-2 sidebar">
+						<ul class ="nav nav-sidebar">
+						<li> <a href="lancarPrecoCapa.html">Lançar Preco de Capa</a></li>
+						<li> <a href="criarNotaVenda.html">Criar Nota de Venda </a></li>
+						<li> <a href="emitirNotaVenda.html">Emitir Nota de Venda</a></li>
+						<li> <a href="emitirRoteiroEntrega.html">Emitir Roteiro de Entrega</a></li>
+						<li> <a href="registrarPagamento.html">Registrar Pagamento</a></li>
+						<li> <a href="listagemNotaVenda.html">Listagem Notas de Venda</a></li>
+						<li> <a href="manterJornal.html"> Manter Jornal </a> </li>
+						<li> <a href="manterJornaleiro.html"> Manter Jornaleiro </a> </li>
+						<li> <a href="manterPontoVenda.html"> Manter Ponto de Venda </a> </li>		<li> <a href="manterUsuario.html"> Manter Usuario </a> </li>					
+						</ul>
+					</div>
+
+			</div>
+			<!-- Conteudo -->
+			
+			<div class="col-md-10 col-md-offset-2 main ">
+
+
+			<h1 class='page-header' > Alterar Usuario</h1>
+			
+			<span id='conteudo'>
+				<form class='form-horizontal' id = 'formAlterarUsuario' name = 'formAlterarUsuario' method = 'post'  >
+				<br/>
+
+			
+					<div id='usuario' class="col-md-offset-1 col-md-8">
+						<input type="hidden" id = "id_Usuario" />
+						<div class='form-group'>
+							<label for='nome' class="control-label col-md-2">Nome : </label>
+							<input type="text" id='nome' name='nome' />
+						</div>
+
+						<div class='form-group'>
+							<label for='nome' class="control-label col-md-2">Login : </label>
+							<input type="text" id='login' name='login' />
+						</div>			
+
+						<div class='form-group'>
+							<label for='senha' class="control-label col-md-2">Senha : </label>
+							<input type="text" id='senha' name='senha' />
+						</div>
+					</div>
+
+			</span>		
+			<div id='botaoAlterar'>
+				<form class= "form-group">
+					<div class="col-md-offset-5 col-md-8">
+						<button class ="btn btn-primary" id="alterar">Alterar</button>
+						<button class ="btn btn-default" id="cancelar">Cancelar</button>
+					</div>
+				</form>	
+
+				</form>
+			</div>
+		</div>
+
+
+
+
+
+
+	<script src="vendor/jquery/dist/jquery.min.js" ></script>
+	<script src="vendor/bootstrap/dist/js/bootstrap.min.js" ></script>
+	<script src="vendor/toastr/toastr.min.js" ></script>
+	<script src="vendor/jquery.maskedinput/src/jquery.maskedinput.js" ></script>
+
+	<script src="alterarUsuario.js"></script>

@@ -53,7 +53,7 @@
 			$ps = $this->pdo->prepare($this->sql);
 			var_dump($pontoVenda->getNome());
 			$ps->execute( array("nome"=>$pontoVenda->getNome(),
-								 "id_jornaleiro"=>$endereco->getId(),
+								 "id_jornaleiro"=>$jornaleiro->getId(),
 								 "id_endereco"=>$endereco->getId(),
 								 "id"=>$pontoVenda->getId()
 

@@ -13,7 +13,6 @@
 			$tipo = '';
 			if( $pessoa instanceOf  PessoaFisica){
 				$tipo = "fisica";
-				var_dump("Aqui!");
 				$this->sql = "INSERT INTO pessoa( nome, email, telefone, rg, cpf, tipo) VALUES( :nome, :email, :telefone, :rg, :cpf, :tipo)";
 				
 				try{
@@ -42,6 +41,7 @@
 										  "cnpj"=>$pessoa->getCnpj(),
 										  "tipo"=>$tipo
 								));
+					$pessoa->setId( $this->pdo->lastInsertId());
 				}catch( Exception $e ){
 					throw new DAOException( $e );
 				}
@@ -73,7 +73,7 @@
 				try{
 					$ps = $this->pdo->prepare( $this->sql);
 					$ps->execute( array("nome"=>$pessoa->getNome(),
-										"emai"=>$pessoa->getEmail(),
+										"email"=>$pessoa->getEmail(),
 										"telefone"=>$pessoa->getTelefone(),
 										"cnpj"=>$pessoa->getCnpj(),
 										"nomeContato"=>$pessoa->getNomeContato(),
@@ -102,7 +102,8 @@
 				$ps = $this->pdo->prepare($this->sql);
 				$ps->execute( array( "id"=> $id ));
 				$resultado = $ps->fetchObject();
-				if( $resultado->tipo === "fisica"){
+
+				if( $resultado->tipo == "fisica" ){
 					$pessoa = new PessoaFisica();
 					$pessoa->setNome( $resultado->nome);
 					$pessoa->setEmail($resultado->email);
@@ -111,7 +112,7 @@
 					$pessoa->setCpf($resultado->cpf);
 					$pessoa->setId($resultado->id);
 				}
-				if( $resultado->tipo === "juridica"){
+				if( $resultado->tipo == "juridica"){
 					$pessoa = new PessoaJuridica();
 					$pessoa->setNome( $resultado->nome);
 					$pessoa->setEmail($resultado->email);
@@ -124,6 +125,7 @@
 			}catch( Exception $e){
 				throw new DAOException( $e );
 			}
+
 			return $pessoa;
 		}
 		function listar(){
@@ -133,7 +135,9 @@
 				$resultado = $this->pdo->query( $this->sql );
 				foreach ($resultado as $row) {
 					$pessoa = null ;
-					if( $row['tipo'] === "fisica"){
+					
+					if( $row['tipo'] == "fisica" ){
+
 						$pessoa = new PessoaFisica();
 						$pessoa->setNome( $row['nome']);
 						$pessoa->setEmail($row['email']);
@@ -142,7 +146,9 @@
 						$pessoa->setRg($row['rg']);
 						$pessoa->setId($row['id']);
 					}
-					if( $row['tipo'] === "juridica"){
+
+					if( $row['tipo'] == "juridica"){
+
 						$pessoa = new PessoaJuridica();
 						$pessoa->setNome( $row['nome']);
 						$pessoa->setEmail($row['email']);
@@ -151,10 +157,11 @@
 						$pessoa->setNomeContato($row['nomeContato']);
 						$pessoa->setId($row['id']);
 					}
-					
+
 					$pessoas[] = $pessoa ;
 
 				}
+				die();
 			}catch( Exception $e){
 				throw new DAOException( $e );
 			}

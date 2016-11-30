@@ -1,0 +1,105 @@
+
+
+
+
+
+<html>
+
+	<head>
+		<link rel="stylesheet" type="text/css" href="vendor/bootstrap/dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="vendor/toastr/toastr.min.css" />	
+		<link rel="stylesheet" type="text/css" href="estilo.css" />	
+
+	</head>
+
+	<body>
+	<div class="col-md-12  main ">
+		<div class="row">
+			<div id="conteudo" class="col-md-12">
+
+			</div>
+		</div>
+	</div>
+	</body>
+
+
+<script src="vendor/jquery/dist/jquery.min.js" ></script>
+<script src="vendor/bootstrap/dist/js/bootstrap.min.js" ></script>
+<script src="vendor/bootstrap3-dialog/dist/js/bootstrap-dialog.min.js" ></script>	
+<script src="notaVendaImpressao.js"> </script>
+ 	<script> 
+
+ 		var objs = localStorage.getItem("roteiro");
+ 		var roteiro = JSON.parse(objs);
+
+
+		var desenharNotaVenda = function desenharNotaVenda( notaVenda ){
+			
+			var HTML = "<h3>"+notaVenda.pontoVenda.nome+"</h3>";
+
+			 HTML += " <table class = 'table col-md-12' border = '1' >	"+		
+				"<thead> <tr> <th> Jornal </th> <th> Entregue</th> </tr></thead>"
+					+"<tbody>";
+
+			 	var itensNota = notaVenda.itensNota;
+
+
+				$.each(itensNota, function ( indice, row) {					    
+					var precoCapa = itensNota[indice].precoCapa;
+					var jornal = precoCapa.jornal;
+					HTML +='<tr> <td>'+jornal.nome+'</td> ';
+					HTML += '<td>'+itensNota[indice].qtdEntregue+'</td> ';
+					HTML += "</tr>"
+				});
+
+				 HTML += "</tbody></table>";
+			 	 HTML += "<br/>";
+			 	 HTML += "<br/>";
+
+				return HTML ;
+
+	}
+
+
+
+		var desenharRoteiro = function desenharRoteiro( roteiro ){
+			var HTML = "<table class = 'table col-md-12'  >	"+		
+				"<thead><tr> <th>"+roteiro[0]+"</th> </thead>"
+					+"<tbody>";
+
+			var divisor = 3 ;
+			
+			var notasVenda = roteiro[1] ;
+			var entregador = roteiro[0] ;
+			HTML += "<tr>";
+
+			var cont = 0;
+
+			$.each( notasVenda , function( indice ){
+			if( cont == 3 ){
+				HTML += "</tr>";	
+				HTML += "<tr>";
+				cont = 0;
+			}
+				HTML += "<td>";
+				HTML += desenharNotaVenda(notasVenda[indice])+"</td>";
+
+				cont = cont + 1;
+			});
+			HTML += "</tr>";
+			HTML += "</tbody>";
+			HTML += "</table>";
+			return HTML;
+		}
+
+ 		$("#conteudo").html( desenharRoteiro( roteiro ));
+
+ 		localStorage.removeItem("roteiro");
+	</script> 
+
+
+</html>
+
+
+
+

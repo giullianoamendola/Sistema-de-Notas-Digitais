@@ -14,7 +14,6 @@
 		function adicionar( &$endereco ){
 			$this->sql = "INSERT INTO endereco( logradouro, numero, complemento, id_bairro) VALUES(:logradouro, :numero, :complemento, :id_bairro)";
 			$bairro = $endereco->getBairro();
-			//var_dump($bairro);
 			try{
 				$ps = $this->pdo->prepare( $this->sql);
 				

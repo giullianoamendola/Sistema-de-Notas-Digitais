@@ -1,34 +1,3 @@
-/*
-( function( $, app, toastr ){
-	'use strict';
-
-	var servicoNotaVenda  =  app.ServicoNotaVenda( $ );
-	var servicoPrecoCapa = new app.ServicoPrecoCapa( $ );
-	var servicoPontoVenda = new app.ServicoPontoVenda( $ );
-
-	var ctrlListagemPrecoCapa = new app.ListagemPrecoCapa( servicoPrecoCapa,
-		 $,
-		 toastr
-		  );
-	var ctrlListagemPontoVenda = new app.ListagemPontoVenda( servicoNotaVenda,
-		 $,
-		 toastr
-		  );
-
-	var ctrlFormNotaVenda = new app.ControladoraFormNotaVenda( 
-		servicoNotaVenda,
-		 $,
-		 toastr
-		  );
-	ctrlListagemPontoVenda.configurar();
-	ctrlListagemPrecoCapa.configurar();
-	ctrlFormNotaVenda.configurar();
-
-})( jQuery , app);
-
-
-
-*/
 
 $(document).ready( function(){
 

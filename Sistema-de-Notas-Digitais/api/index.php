@@ -22,7 +22,7 @@ $configuration = [
         'displayErrorDetails' => true,
     ],
 ];
-//DI::config();
+
 
 // Cria a aplicação Slim
 $app = new \Slim\App($configuration);
@@ -40,6 +40,7 @@ if ( ! DEBUG_MODE ) {
 	// Desabilita a tela de diagnóstico do Slim
 	$app->config( 'debug', false );
 }
+
 
 // Checagens de segurança HTTP
 /*
@@ -62,56 +63,22 @@ $app->add( function ( $req, $res, $next ) {
             ;//->withStatus( 200 );
 });
 
-// CORS Slim 2
-/*$app->map( '/:x+', function( $x ) use ( $app ) {
-	$app->response->header( 'Access-Control-Allow-Methods', 'HEAD, GET, POST, PATCH, PUT, DELETE, OPTIONS' );
-    $app->response->setStatus( 200 );
-} )->via( 'OPTIONS' );*/
-
-// Seta erro como o status default, ao invés de sucesso!
-/*$app->response->setStatus( 400 );
-*/
-// Checagens de segurança da sessão
-/*
-$session = new phputil\Session();
-$session->start();
-*/
-/*
-    session_start();
-
-    if( isset( $_SESSION['usuario'])){
-        
-        
-    }
 
 
-    session_destroy();
-*/
-/*
-$bd = 'a_outra';
-$host = 'localhost';
-$usuario = 'root';
-$senha = '';
-$dsn = "mysql:dbname=$db;host=$host";
-*/
 $options[ PDO::ATTR_PERSISTENT ] = true; 
 $options[ PDO::MYSQL_ATTR_INIT_COMMAND ] = 'SET NAMES utf8';        
 
 $pdo = new PDO('mysql:host=localhost;dbname=sistema_notas_digitais', "root", '', $options);
-
-// Configuração de injeção de dependências
-/*require_once 'modulos/comum/DIConfig.php';*/
-
+session_start();
 // Definição das rotas
+//require_once 'rotasAlteradas.php';
 require_once 'routes.php';
-
 // Execução
-$app->run();
-/*
-    $jornalDAO = new JornalDAO( $pdo );
-    $precoCapaDAO = new precoCapaDAO( $pdo, $jornalDAO );
-    $jornal = new Jornal("O Globo",3);
-    $preco = new PrecoCapa( 6.00,17112010,$jornal,43);
-    $precoCapaDAO->lancar($preco);
-*/
+
+
+ $app->run();
+  
+
+  //session_destroy();
+ 
 ?>

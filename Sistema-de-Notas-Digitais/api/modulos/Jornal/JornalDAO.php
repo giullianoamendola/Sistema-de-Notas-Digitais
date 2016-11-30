@@ -77,7 +77,7 @@
 		}
 		
 		function numeroDeRegistros(){
-			$this->sql = "SELECT count(id) FROM jornal ";
+			$this->sql = "SELECT count(*) FROM jornal ";
 			$resultado = 0 ;
 			try{	
 				$ps = $this->pdo->query( $this->sql ); 

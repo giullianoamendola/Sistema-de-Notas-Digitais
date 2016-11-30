@@ -1,0 +1,68 @@
+<html>
+
+	<head>
+		<title> Criar Jornal </title>
+		<link rel="stylesheet" type="text/css" href="vendor/bootstrap/dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="vendor/toastr/toastr.min.css" />
+		<link rel="stylesheet" type="text/css" href="vendor/bootstrap3-dialog/dist/css/bootstrap-dialog.min.css" />		
+		<link rel="stylesheet" type="text/css" href="estilo.css" />	
+
+	</head>
+
+	<body>
+		<!--Barra do Topo -->
+		<nav class = "navbar navbar-inverse navbar-fixed-top" >
+			<div class="container-fluid">
+				<a class="navbar-brand" href="index.html">Distribuidora de Jornal</a>
+			</div>
+		</nav>
+		
+		<!-- Barra Lateral -->
+		<div class= "container-fluid "	>
+
+				<div class="col-sm-3 col-md-2 sidebar">
+					<ul class ="nav nav-sidebar">
+						<li> <a href="lancarPrecoCapa.html">Lançar Preco de Capa</a></li>
+						<li> <a href="criarNotaVenda.html">Criar Nota de Venda </a></li>
+						<li> <a href="emitirNotaVenda.html">Emitir Nota de Venda</a></li>
+						<li> <a href="emitirRoteiroEntrega.html">Emitir Roteiro de Entrega</a></li>
+						<li> <a href="registrarPagamento.html">Registrar Pagamento</a></li>
+						<li> <a href="listagemNotaVenda.html">Listagem Notas de Venda</a></li>
+						<li> <a href="manterJornal.html"> Manter Jornal </a> </li>
+						<li> <a href="manterJornaleiro.html"> Manter Jornaleiro </a> </li>
+						<li> <a href="manterPontoVenda.html"> Manter Ponto de Venda </a> </li>
+						<li> <a href="manterUsuario.html"> Manter Usuario </a> </li>
+					</ul>
+				</div>
+
+		</div>
+		<!-- Conteudo -->
+		
+		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main ">
+			<h1 class='page-header' >Criar Jornal</h1>
+			
+			<span id='conteudo'>
+				<form class='form-horizontal' id = 'formManterJornal' name = 'formManterJornal' method = 'post'  >
+					<div class='form-group'>
+						<label for='nome' class="control-label col-md-2">Nome : </label>
+						<input type="text" id='nome' name='nome' />
+					</div>
+
+					<div class="form-group">
+						<div class="col-md-offset-4 col-md-2">
+							<button class="btn btn-primary" id ="criar"> Criar</button>
+							<button class="btn btn-default" id ="cancelar"> Cancelar</button>
+						</div>
+					</div>
+				</form>
+			</span>	
+		</div>
+
+		<script src="vendor/jquery/dist/jquery.min.js" ></script>
+		<script src="vendor/bootstrap/dist/js/bootstrap.min.js" ></script>
+		<script src="vendor/toastr/toastr.min.js" ></script>
+		<script src="vendor/bootstrap3-dialog/dist/js/bootstrap-dialog.min.js" ></script>
+		<script src="criarJornal.js"></script>
+	</body>
+
+</html>

@@ -57,20 +57,27 @@
 
 		function lancarPrecoCapa( $params ){
 			try{
-				
-				$precosCapa = $params['precosCapa'];
-				$jornais = $params['jornais'];
+
+				$precosCapa =  $params['precosCapa'];
 				$contador = 0 ;
 				$data = date('d/m/Y');
-				$numeroDeJornais =(int) $this->jornalDAO->numeroDeRegistros();
 				
-				for ($contador = 0 ; $contador < $numeroDeJornais ; $contador = $contador + 1) { 
-					$preco = $precosCapa[$contador][0];
-					$id =(int) $precosCapa[$contador][1];
-					$jornal = $this->jornalDAO->comId( (int)$jornais[$contador] );
-					$precoCapa = new PrecoCapa( $preco, $data,  $jornal, $id );
-					$this->precoCapaDAO->lancar( $precoCapa );	
+				foreach ($precosCapa as $p ) {
+					$preco = $p['preco'];
+					$id = $p['id'] ;
+					$id_jornal = $p['jornal'] ;
+					if( is_numeric($preco)  && is_numeric( $id_jornal ) ){
+						$jornal = $this->jornalDAO->comId( $id_jornal );
+						$precoCapa = new PrecoCapa( $preco, $data,  $jornal, $id );
+						$this->precoCapaDAO->lancar( $precoCapa );	
+					}
+					else{
+						throw new Exception("Precos nao sao numericos");
+					}
+
 				}
+
+				
 
 			}catch( DAOException $e ){
 				return $this->geradoraResposta->erro("['ERRO DE ACESSO AO BANCO DE DADOS : ']"+$e->getMessage(),GeradoraResposta::TIPO_JSON );

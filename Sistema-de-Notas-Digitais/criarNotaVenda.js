@@ -34,10 +34,12 @@ $(document).ready( function(){
 
 	_this = this ;
 
+	_this.numeroRegistros = 0 ;
+
 	_this.tabelaItemNota = function tabelaItemNota( resposta ){
 
 	var HTML = '';
-
+	var cont = 0 ;
 	 HTML = " <table class = 'table' border = '1' >	"+		
 		"<thead> <tr> <th> Jornal </th> <th>Preço </th> <th>Entregue</th>   </tr></thead>"
 			+"<tbody>";
@@ -52,11 +54,13 @@ $(document).ready( function(){
 			HTML +='<td> <input type="text" id =entregue_'+indice+'> </td> </tr>';
 
 			HTML +='<input type="hidden" id = "precoCapa_'+indice+'"value ="'+precoCapa.id+'"/>';
-		
+			
+			cont = cont + 1;
 		});
 
 		HTML += "</tbody>";
-
+		_this.numeroRegistros = cont + 1 ;
+		
 		return HTML ;
 	}
 
@@ -77,8 +81,8 @@ $(document).ready( function(){
 	}
 
 	_this.zerarLista = function zerarLista(){
-		var MAXITENSPORNOTA = 5 ;
-		for( var contagem = 0 ; contagem < MAXITENSPORNOTA ; contagem = contagem + 1){
+		
+		for( var contagem = 0 ; contagem < _this.numeroRegistros ; contagem = contagem + 1){
 			$("#entregue_"+contagem).val(0);
 		}
 	}
@@ -103,7 +107,6 @@ $(document).ready( function(){
 		$.ajax({ 
 				url: "api/NotaVenda/PontosSemNota",
 				type: "get",
-				dataType: "html",
 				success: function (resposta) {
 
 					$("#pontosVenda").html( _this.selectPontosVenda( resposta ) );
@@ -118,9 +121,8 @@ $(document).ready( function(){
 
 	_this.qtdEntregue =  function qtdEntregue(){	
 		var qtdEntregue = [] ;
-		var MAXITENSPORNOTA = 5 ;
 		var contagem = 0;
-		for( contagem = 0; contagem < MAXITENSPORNOTA ; contagem = contagem + 1){
+		for( contagem = 0; contagem <_this.numeroRegistros; contagem = contagem + 1){
 			qtdEntregue[contagem] = $("#entregue_"+contagem ).val();
 
 		}
@@ -130,9 +132,8 @@ $(document).ready( function(){
 
 	_this.precosCapa =  function precosCapa(){	
 		var precosCapa = [] ;
-		var MAXITENSPORNOTA = 5 ;
 		var contagem = 0;
-		for( contagem = 0; contagem < MAXITENSPORNOTA ; contagem = contagem + 1){
+		for( contagem = 0; contagem < _this.numeroRegistros ; contagem = contagem + 1){
 
 			precosCapa[contagem] = $("#precoCapa_"+contagem).val();
 
@@ -169,7 +170,6 @@ $(document).ready( function(){
 						$.ajax({ 
 							url: "api/NotaVenda/PontosSemNota",
 							type: "get",
-							dataType: "html",
 							success: function (resposta) {
 
 								$("#pontosVenda").html( _this.selectPontosVenda( resposta ) );
@@ -183,7 +183,7 @@ $(document).ready( function(){
 
 					},
 					error: function( jqXHR, textStatus, errorThrown ){
-						alert("Nota nao Criada");
+						alert("Nota nao Criada"+jqXHR);
 					}
 				});
 

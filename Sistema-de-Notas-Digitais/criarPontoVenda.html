@@ -1,0 +1,172 @@
+<html>
+
+	<head>
+		<title> Criar Ponto de Venda </title>
+		<link rel="stylesheet" type="text/css" href="vendor/bootstrap/dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="vendor/toastr/toastr.min.css" />
+		<link rel="stylesheet" type="text/css" href="vendor/bootstrap3-dialog/dist/css/bootstrap-dialog.min.css" />		
+		<link rel="stylesheet" type="text/css" href="estilo.css" />	
+
+	</head>
+
+	<body>
+		<!--Barra do Topo -->
+		<nav class = "navbar navbar-inverse navbar-fixed-top" >
+			<div class="container-fluid">
+				<a class="navbar-brand" href="index.html">Distribuidora de Jornal</a>
+			</div>
+		</nav>
+		
+		<!-- Barra Lateral -->
+		<div class= "container-fluid "	>
+
+				<div class="col-sm-3 col-md-2 sidebar">
+					<ul class ="nav nav-sidebar">
+					<li> <a href="lancarPrecoCapa.html">Lançar Preco de Capa</a></li>
+					<li> <a href="criarNotaVenda.html">Criar Nota de Venda </a></li>
+					<li> <a href="emitirNotaVenda.html">Emitir Nota de Venda</a></li>
+					<li> <a href="emitirRoteiroEntrega.html">Emitir Roteiro de Entrega</a></li>
+					<li> <a href="registrarPagamento.html">Registrar Pagamento</a></li>
+					<li> <a href="listagemNotaVenda.html">Listagem Notas de Venda</a></li>
+					<li> <a href="manterJornal.html"> Manter Jornal </a> </li>
+					<li> <a href="manterJornaleiro.html"> Manter Jornaleiro </a> </li>
+					<li> <a href="manterPontoVenda.html"> Manter Ponto de Venda </a> </li>
+					<li> <a href="manterUsuario.html"> Manter Usuario </a> </li>
+					</ul>
+				</div>
+
+		</div>
+		<!-- Conteudo -->
+		
+		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main ">
+			<h1 class='page-header' >Criar Ponto de Venda</h1>
+			
+			<span id='conteudo'>
+				<form class='form-horizontal' id = 'formManterPontoVenda' name = 'formManterPontoVenda' method = 'post'  >
+					<div class='form-group'>
+						<label for='nome' class="control-label col-md-2">Nome : </label>
+						<input type="text" id='nome' name='nome' />
+					</div>
+
+					<div id = "endereco">
+						<div class="form-group">
+							<label for="logradouro" class="control-label col-md-2">Logradouro :</label>
+							<input type="text" id="logradouro" name="logradouro"/>
+						</div>
+
+						<div class="form-group">
+							<label for="complemento" class="control-label col-md-2">Complemento :</label>
+							<input type="text" id="complemento" name="complemento"/>
+						</div>
+
+						<div class="form-group">
+							<label for="numero" class="control-label col-md-2">Numero :</label>
+							<input type="text" id="numero" name="numero"/>
+						</div>
+
+
+							<div class="form-group">
+
+								<label for="bairro"  class="control-label col-md-2">Bairro :</label>
+								<div id="bairros" > </div>
+								<div class="col-md-2">
+									<button class="btn btn-default" id="novoBairro" data-toggle="modal" data-target="#modalBairro">Novo Bairro</button>
+								</div>
+							</div>
+
+<!--
+							<div id="cidade">
+
+								<div class="form-group">
+									
+									<label for="selectCidade"  class="control-label col-md-2">Cidade:</label>
+									<div id="cidades" ></div>
+
+									<div class="col-md-2">
+										<button class="btn btn-default" id="novaCidade" data-toggle="modal" data-target="#modalCidade">Nova Cidade</button>
+									</div>
+								</div>
+
+							</div>
+-->
+					
+
+					</div>
+
+					<div class="form-group">
+
+						<label for="jornaleiro"  class="control-label col-md-2">Jornaleiro :</label>
+						<div id="jornaleiros" > </div>
+
+					</div>
+					<div class="form-group">
+						<div class="col-md-offset-4 col-md-4">
+							<button class="btn btn-primary" id ="criar"> Criar</button>
+							<button class="btn btn-default" id ="cancelar"> Cancelar</button>
+						</div>
+					</div>
+				</form>
+				
+				<div class="container col-md-12 ">
+					  <div class="modal fade" id="modalBairro" role="dialog">
+					    <div class="modal-dialog modal-sm">
+					      <div class="modal-content">
+					        <div class="modal-header">
+					          <button type="button" class="close" data-dismiss="modal">&times;</button>
+					          <h4 class="modal-title">Novo Bairro</h4>
+					        </div>
+					        <div class="modal-body" >
+					        	<form class="form-horizontal" id = "formBairro" method ='post'>
+						        	
+						        	<div class="form-group">	
+						        		<label for="nome" class="control-label col-md-2">Nome: </label>
+						        		<input type = "text" class="col-md-offset-2 col-md-4" id="nome" />
+						        	</div>
+
+						        	<div class="form-group">
+						        		<label for="cidade" class="control-label col-md-2">Cidade: </label>
+						        		<div id ="cidades">
+
+						        		</div>
+						        	</div>
+					        	</form>
+					        </div>
+					        <div class="modal-footer">
+					          <button type="button" class="btn btn-primary" data-dismiss="modal" id="criarBairro">Criar</button>
+					          	<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+					        </div>
+					      </div>
+					    </div>
+					</div>
+
+				<div class="container">
+					  <div class="modal fade" id="modalCidade" role="dialog">
+					    <div class="modal-dialog modal-sm">
+					      <div class="modal-content">
+					        <div class="modal-header">
+					          <button type="button" class="close" data-dismiss="modal">&times;</button>
+					          <h4 class="modal-title">Novo Cidade</h4>
+					        </div>
+					        <div class="modal-body" >
+
+					        </div>
+					        <div class="modal-footer">
+					          <button type="button" class="btn btn-primary" data-dismiss="modal">Criar</button>
+					          	<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+					        </div>
+					      </div>
+					    </div>
+					</div>
+
+				 </div>
+			</span>	
+		</div>
+
+		<script src="vendor/jquery/dist/jquery.min.js" ></script>
+		<script src="vendor/bootstrap/dist/js/bootstrap.min.js" ></script>
+		<script src="vendor/toastr/toastr.min.js" ></script>
+		<script src="vendor/bootstrap3-dialog/dist/js/bootstrap-dialog.min.js" ></script>
+		<script src="criarPontoVenda.js"></script>
+	</body>
+
+</html>

@@ -17,6 +17,9 @@
 			$this->sql = "INSERT INTO jornaleiro(tipoPagamento, id_pessoa) VALUES(:tipoPagamento , :id_pessoa)";
 			$pessoa = $jornaleiro->getPessoa();
 			try{
+				if( $pessoa->getId() == 0 ){
+					$this->pessoaDAO->adicionar( $pessoa );
+				}
 				$ps = $this->pdo->prepare( $this->sql );
 				$ps->execute( array( "tipoPagamento"=> $jornaleiro->getTipoPagamento(),
 									 "id_pessoa"=> $pessoa->getId()
@@ -31,6 +34,7 @@
 			$this->sql = "UPDATE jornaleiro SET tipoPagamento = :tipoPagamento , id_pessoa = :id_pessoa WHERE id = :id";
 			$pessoa = $jornaleiro->getPessoa();
 			try{
+				$this->pessoaDAO->alterar( $jornaleiro->getPessoa());
 				$ps = $this->pdo->prepare($this->sql);
 				$ps->execute( array( "tipoPagamento"=>$jornaleiro->getTipoPagamento(),
 									 "id_pessoa"=>$pessoa->getId(),
@@ -76,8 +80,6 @@
 					$jornaleiro = new Jornaleiro($row['tipoPagamento'], $pessoa, $row['id']);
 					$jornaleiros[] = $jornaleiro ;
 				}
-
-
 			}catch( Exception $e ){
 				throw new DAOException($e);
 			}
